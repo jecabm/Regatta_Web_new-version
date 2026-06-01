@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($p = \"C:\\\\Users\\\\F.Salazar\\\\Downloads\\\\system_prompts_leaks-main.zip\"; Test-Path $p; \\(Get-Item $p\\).Length)",
+      "PowerShell(Add-Type -AssemblyName System.IO.Compression.FileSystem; $z = [System.IO.Compression.ZipFile]::OpenRead\\(\"C:\\\\Users\\\\F.Salazar\\\\Downloads\\\\system_prompts_leaks-main.zip\"\\); $z.Entries | Select-Object -First 60 FullName, Length | Format-Table -AutoSize; \"TOTAL ENTRIES: $\\($z.Entries.Count\\)\"; $z.Dispose\\(\\))"
+    ]
+  }
+}
