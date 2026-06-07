@@ -5,11 +5,39 @@
  */
 
 export type NavItem = {
-  /** Stable key — reserved for future i18n lookups. */
   key: string;
   label: string;
   href: string;
+  description?: string;
 };
+
+export type MegaColumn = {
+  /** Key into Dictionary.nav for the translated column heading. */
+  headingKey?: string;
+  items: NavItem[];
+};
+
+export type MegaFeatured = {
+  eyebrow: string;
+  heading: string;
+  description: string;
+  href: string;
+  cta: string;
+};
+
+export type NavGroup = {
+  key: string;
+  label: string;
+  children: NavItem[];
+  columns?: MegaColumn[];
+  featured?: MegaFeatured;
+};
+
+export type NavEntry = NavItem | NavGroup;
+
+export function isNavGroup(entry: NavEntry): entry is NavGroup {
+  return "children" in entry;
+}
 
 export const siteConfig = {
   name: "Regatta Registers",
@@ -21,11 +49,100 @@ export const siteConfig = {
   contactEmail: "support@regattaregisters.com",
 } as const;
 
-/** Primary navigation — MUST match the existing site structure. */
-export const mainNav: NavItem[] = [
-  { key: "home", label: "Home", href: "/" },
-  { key: "about", label: "About Us", href: "/about" },
+/** Primary navigation. */
+export const mainNav: NavEntry[] = [
+  {
+    key: "features",
+    label: "Features",
+    children: [
+      { key: "asset-management", label: "Asset Management", href: "/features/asset-management" },
+      { key: "calendar", label: "Calendar", href: "/features/calendar" },
+      { key: "multi-locations", label: "Multi Locations", href: "/features/multi-locations" },
+      { key: "prestart-checklist", label: "Prestart Checklist", href: "/features/prestart-checklist" },
+    ],
+    columns: [
+      {
+        headingKey: "manageAssets",
+        items: [
+          {
+            key: "asset-management",
+            label: "Asset Management",
+            href: "/features/asset-management",
+            description: "Centralised register for every piece of equipment you own or operate.",
+          },
+          {
+            key: "multi-locations",
+            label: "Multi Locations",
+            href: "/features/multi-locations",
+            description: "Manage compliance across multiple sites from a single dashboard.",
+          },
+        ],
+      },
+      {
+        headingKey: "stayCompliant",
+        items: [
+          {
+            key: "calendar",
+            label: "Calendar",
+            href: "/features/calendar",
+            description: "Never miss an inspection or certification deadline.",
+          },
+          {
+            key: "prestart-checklist",
+            label: "Prestart Checklist",
+            href: "/features/prestart-checklist",
+            description: "Digital prestart checks on any device — faults flagged in real time.",
+          },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "See it in action",
+      heading: "Everything you need to run a compliant operation",
+      description:
+        "From asset registers to daily prestart checks — Regatta Registers connects your whole compliance workflow in one place.",
+      href: "/free-trial",
+      cta: "Start free trial",
+    },
+  },
   { key: "pricing", label: "Pricing", href: "/pricing" },
+  {
+    key: "resources",
+    label: "Resources",
+    children: [
+      { key: "blog", label: "Blog", href: "/resources/blog" },
+      { key: "learning", label: "Learning Centre", href: "/resources/learning" },
+    ],
+    columns: [
+      {
+        headingKey: "learn",
+        items: [
+          {
+            key: "blog",
+            label: "Blog",
+            href: "/resources/blog",
+            description: "Compliance guides, industry news, and how-to articles.",
+          },
+          {
+            key: "learning",
+            label: "Learning Centre",
+            href: "/resources/learning",
+            description: "Step-by-step guides and video walkthroughs for the platform.",
+          },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: "New",
+      heading: "Learning Centre",
+      description:
+        "Video walkthroughs and FAQs to help your team get the most out of Regatta Registers.",
+      href: "/resources/learning",
+      cta: "Explore guides",
+    },
+  },
+  { key: "shop", label: "Shop", href: "/shop" },
+  { key: "about", label: "About", href: "/about" },
   { key: "contact", label: "Contact", href: "/contact" },
 ];
 
@@ -38,18 +155,28 @@ export const ctaNav = {
 /** Footer link groups. */
 export const footerNav: { title: string; items: NavItem[] }[] = [
   {
-    title: "Product",
+    title: "Features",
     items: [
-      { key: "home", label: "Overview", href: "/" },
-      { key: "pricing", label: "Pricing", href: "/pricing" },
-      { key: "free-trial", label: "Free Trial", href: "/free-trial" },
+      { key: "asset-management", label: "Asset Management", href: "/features/asset-management" },
+      { key: "calendar", label: "Calendar", href: "/features/calendar" },
+      { key: "multi-locations", label: "Multi Locations", href: "/features/multi-locations" },
+      { key: "prestart-checklist", label: "Prestart Checklist", href: "/features/prestart-checklist" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { key: "blog", label: "Blog", href: "/resources/blog" },
+      { key: "learning", label: "Learning Centre", href: "/resources/learning" },
     ],
   },
   {
     title: "Company",
     items: [
+      { key: "pricing", label: "Pricing", href: "/pricing" },
       { key: "about", label: "About Us", href: "/about" },
       { key: "contact", label: "Contact", href: "/contact" },
+      { key: "free-trial", label: "Free Trial", href: "/free-trial" },
     ],
   },
   {

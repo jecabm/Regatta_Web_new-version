@@ -27,14 +27,41 @@ export interface StatItem {
   label: string;
 }
 
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
 /** UI translation strings (chrome + shared labels). */
 export interface Dictionary {
-  nav: { home: string; about: string; pricing: string; contact: string };
+  nav: {
+    home: string;
+    about: string;
+    pricing: string;
+    contact: string;
+    features: string;
+    resources: string;
+    // Feature sub-items
+    assetManagement: string;
+    calendar: string;
+    multiLocations: string;
+    prestartChecklist: string;
+    // Resource sub-items
+    blog: string;
+    learning: string;
+    // Mega menu column headings
+    manageAssets: string;
+    stayCompliant: string;
+    learn: string;
+  };
   actions: {
     login: string;
     freeTrial: string;
     startFreeTrial: string;
     viewPricing: string;
+    getStartedFree: string;
+    talkToSales: string;
+    exploreFeatures: string;
   };
   hero: {
     badge: string;
@@ -42,6 +69,7 @@ export interface Dictionary {
     titleHighlight: string;
     titleTrail: string;
     subtitle: string;
+    trustSignals: string[];
   };
   pricing: {
     eyebrow: string;
@@ -51,10 +79,24 @@ export interface Dictionary {
     custom: string;
     mostPopular: string;
     note: string;
+    comparePlans: string;
+    compareSubtitle: string;
+    featureColumn: string;
+    categories: {
+      core: string;
+      compliance: string;
+      teamLocations: string;
+      enterprise: string;
+      support: string;
+    };
+    faqTitle: string;
+    stillHaveQuestions: string;
+    stillHaveQuestionsSubtitle: string;
+    faqItems: FaqItem[];
   };
   footer: {
     tagline: string;
-    groups: { product: string; company: string; account: string };
+    groups: { product: string; features: string; resources: string; company: string; account: string };
     links: {
       overview: string;
       pricing: string;
@@ -62,6 +104,8 @@ export interface Dictionary {
       about: string;
       contact: string;
       login: string;
+      blog: string;
+      learning: string;
     };
     rights: string;
     builtFor: string;
@@ -88,6 +132,21 @@ export interface HomeContent {
     title: string;
     subtitle: string;
     items: FeatureItem[];
+    badge: string;
+  };
+  trustBar: {
+    stats: StatItem[];
+    usedIn: string;
+    industries: string[];
+  };
+  liftingEquipment: {
+    eyebrow: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    features: FeatureItem[];
+    ctaPrimary: string;
+    ctaSecondary: string;
   };
   cta: { title: string; subtitle: string; primary: string; secondary: string };
 }

@@ -6,12 +6,31 @@ export const auContent: CountryContent = {
   locale: "en-AU",
   currency: "AUD",
   dictionary: {
-    nav: { home: "Home", about: "About Us", pricing: "Pricing", contact: "Contact" },
+    nav: {
+      home: "Home",
+      about: "About",
+      pricing: "Pricing",
+      contact: "Contact",
+      features: "Features",
+      resources: "Resources",
+      assetManagement: "Asset Management",
+      calendar: "Calendar",
+      multiLocations: "Multi Locations",
+      prestartChecklist: "Prestart Checklist",
+      blog: "Blog",
+      learning: "Learning Centre",
+      manageAssets: "Manage Assets",
+      stayCompliant: "Stay Compliant",
+      learn: "Learn",
+    },
     actions: {
       login: "Login",
       freeTrial: "Free Trial",
       startFreeTrial: "Start Free Trial",
       viewPricing: "View Pricing",
+      getStartedFree: "Get started free",
+      talkToSales: "Talk to sales",
+      exploreFeatures: "Explore all features",
     },
     hero: {
       badge: "Asset · Inspection · Compliance",
@@ -20,6 +39,11 @@ export const auContent: CountryContent = {
       titleTrail: "in one secure place",
       subtitle:
         "A cloud platform for lifting equipment, asset, and fleet inspection management across mining, construction, and industrial compliance.",
+      trustSignals: [
+        "No credit card required",
+        "Import existing registers",
+        "Cancel anytime",
+      ],
     },
     pricing: {
       eyebrow: "Pricing",
@@ -30,18 +54,74 @@ export const auContent: CountryContent = {
       custom: "Custom",
       mostPopular: "Most popular",
       note: "All prices in AUD. No setup costs. Cancel anytime.",
+      comparePlans: "Compare plans",
+      compareSubtitle: "Everything that's included, side by side.",
+      featureColumn: "Feature",
+      categories: {
+        core: "Core",
+        compliance: "Compliance",
+        teamLocations: "Team & Locations",
+        enterprise: "Enterprise",
+        support: "Support",
+      },
+      faqTitle: "Frequently asked questions",
+      stillHaveQuestions: "Still have questions?",
+      stillHaveQuestionsSubtitle:
+        "Talk to our team — we'll help you find the right plan for your operation.",
+      faqItems: [
+        {
+          q: "Is there a free trial?",
+          a: "Yes — every plan starts with a full-featured free trial. No credit card required. You can import your existing asset register and see everything working before you pay.",
+        },
+        {
+          q: "Can I upgrade or downgrade my plan later?",
+          a: "Absolutely. You can change your plan at any time. Upgrades take effect immediately; downgrades apply at the next billing cycle.",
+        },
+        {
+          q: "How does the multi-location feature work?",
+          a: "Pro and Enterprise plans let you create unlimited sites within a single account. Each site has its own asset list, team members, and compliance calendar, while admins get a cross-site view.",
+        },
+        {
+          q: "Does Regatta Registers work offline?",
+          a: "Offline mode is available on Pro and Enterprise plans. Inspectors can complete checklists and prestart records in the field without a connection — data syncs automatically when back online.",
+        },
+        {
+          q: "Can I import my existing data?",
+          a: "Yes. All plans support CSV bulk import for your existing asset registers. Our team can assist with migration on Pro and Enterprise.",
+        },
+        {
+          q: "What compliance standards are supported?",
+          a: "Out of the box we support AS/NZS 4991, ISO 9927, and OSHA lifting equipment standards. Enterprise customers can configure custom standards.",
+        },
+        {
+          q: "Is my data secure?",
+          a: "Yes. Data is encrypted in transit and at rest, hosted on SOC 2 compliant infrastructure. Enterprise plans include SSO/SAML and advanced access controls.",
+        },
+        {
+          q: "What payment methods do you accept?",
+          a: "We accept all major credit cards. Enterprise customers can arrange bank transfer or purchase order billing.",
+        },
+      ],
     },
     footer: {
       tagline:
         "Asset, inspection, and compliance management for mining, construction, and industrial environments.",
-      groups: { product: "Product", company: "Company", account: "Account" },
+      groups: {
+        product: "Product",
+        features: "Features",
+        resources: "Resources",
+        company: "Company",
+        account: "Account",
+      },
       links: {
         overview: "Overview",
         pricing: "Pricing",
         freeTrial: "Free Trial",
-        about: "About Us",
+        about: "About",
         contact: "Contact",
         login: "Login",
+        blog: "Blog",
+        learning: "Learning Centre",
       },
       rights: "All rights reserved.",
       builtFor: "Built for industrial compliance.",
@@ -104,31 +184,26 @@ export const auContent: CountryContent = {
       items: [
         {
           title: "Centralised Management",
-          description:
-            "Manage all assets, registers, and inspection records in one secure system.",
+          description: "Manage all assets, registers, and inspection records in one secure system.",
         },
         {
           title: "Real-Time Visibility",
-          description:
-            "See the live status of every asset and inspection at a glance.",
+          description: "See the live status of every asset and inspection at a glance.",
         },
         {
           title: "Asset & Fleet Management",
-          description:
-            "Track equipment, fleets, and components across multiple sites.",
+          description: "Track equipment, fleets, and components across multiple sites.",
         },
         {
           title: "Automated Compliance",
-          description:
-            "Never miss an inspection with automated scheduling and alerts.",
+          description: "Never miss an inspection with automated scheduling and alerts.",
         },
       ],
     },
     how: {
       eyebrow: "How it works",
       title: "Up and running in six steps",
-      subtitle:
-        "No setup costs. Import your existing registers and scale as you grow.",
+      subtitle: "No setup costs. Import your existing registers and scale as you grow.",
       steps: [
         { title: "No setup costs", description: "Start free — no upfront fees or hardware required." },
         { title: "Structure setup", description: "Configure your sites, asset types, and teams." },
@@ -142,12 +217,42 @@ export const auContent: CountryContent = {
       eyebrow: "Industries",
       title: "Built for heavy, regulated environments",
       subtitle: "Trusted across the industries where compliance can't slip.",
+      badge: "Compliance · Inspections · Assets",
       items: [
         { title: "Mining", description: "Asset registers and inspections for demanding mine sites." },
         { title: "Construction", description: "Keep plant and equipment compliant across projects." },
         { title: "Lifting Equipment", description: "Manage cranes, slings, and rigging with full traceability." },
         { title: "Industrial Compliance", description: "Standardise records and stay audit-ready." },
       ],
+    },
+    trustBar: {
+      stats: [
+        { value: "10,000+", label: "Assets tracked" },
+        { value: "98%", label: "On-time inspection rate" },
+        { value: "< 5 min", label: "Average setup time" },
+      ],
+      usedIn: "Used in",
+      industries: ["Mining", "Construction", "Lifting & Rigging", "Oil & Gas"],
+    },
+    liftingEquipment: {
+      eyebrow: "Our speciality",
+      title: "The digital compliance system",
+      titleHighlight: "for lifting equipment",
+      subtitle:
+        "Lifting gear has unique compliance demands — test certificates, rated capacities, periodic inspections, and real-time readiness checks. Regatta Registers is built around these requirements from the ground up.",
+      features: [
+        { title: "QR Code", description: "Scan any asset to instantly pull up its register, history, and next inspection." },
+        { title: "Offline Ready", description: "Complete inspections in the field — data syncs automatically when you're back online." },
+        { title: "Customisation", description: "Build custom forms, fields, and workflows to match your exact compliance requirements." },
+        { title: "Standards Compliance", description: "Built around AS/NZS, ISO, and OSHA lifting equipment standards out of the box." },
+        { title: "Asset Management", description: "Full lifecycle tracking from acquisition to retirement across every piece of gear." },
+        { title: "Multi Location", description: "Manage lifting gear across every site, depot, and project from a single account." },
+        { title: "Booking", description: "Schedule and book equipment for upcoming jobs — always know what's available." },
+        { title: "Readiness", description: "At-a-glance compliance status so you know what's cleared for use before mobilising." },
+        { title: "Bulk Uploads", description: "Import your entire existing register from a spreadsheet in minutes — no data loss." },
+      ],
+      ctaPrimary: "Start free trial",
+      ctaSecondary: "Explore all features",
     },
     cta: {
       title: "Ready to take control of your compliance?",
@@ -163,8 +268,7 @@ export const auContent: CountryContent = {
       "Regatta Registers helps asset-heavy operations replace paper and spreadsheets with a single, audit-ready system for assets, inspections, and compliance.",
     mission: {
       title: "Our mission",
-      body:
-        "To make compliance effortless for the industries that keep the world running — so teams spend less time on admin and more time on safe, productive work.",
+      body: "To make compliance effortless for the industries that keep the world running — so teams spend less time on admin and more time on safe, productive work.",
     },
     stats: [
       { value: "10k+", label: "Assets tracked" },
@@ -190,8 +294,7 @@ export const auContent: CountryContent = {
   contactPage: {
     eyebrow: "Contact",
     title: "Talk to the Regatta Registers team",
-    subtitle:
-      "Questions about deployment, compliance workflows, or pricing? We're here to help.",
+    subtitle: "Questions about deployment, compliance workflows, or pricing? We're here to help.",
     form: {
       name: "Full name",
       company: "Company",
@@ -217,8 +320,7 @@ export const auContent: CountryContent = {
     freeTrial: {
       eyebrow: "Free Trial",
       title: "Get started in minutes",
-      subtitle:
-        "Spin up your workspace, import existing data, and see compliance tracking work end to end.",
+      subtitle: "Spin up your workspace, import existing data, and see compliance tracking work end to end.",
       perks: [
         "No setup costs",
         "Import your existing registers",

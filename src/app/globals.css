@@ -12,30 +12,30 @@
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* ---- Brand / Primary — Orange (primary action color) ---- */
-  --color-brand-50: #fff7ed;
-  --color-brand-100: #ffedd5;
-  --color-brand-200: #fed7aa;
-  --color-brand-300: #fdba74;
-  --color-brand-400: #fb923c;
-  --color-brand-500: #f97316;
-  --color-brand-600: #ea580c;
-  --color-brand-700: #c2410c;
-  --color-brand-800: #9a3412;
-  --color-brand-900: #7c2d12;
+  /* ---- Brand / Primary — Orange (#F28500 main, #FFBC6B light, #B76502 dark) ---- */
+  --color-brand-50:  #fff8ed;
+  --color-brand-100: #ffefd0;
+  --color-brand-200: #ffdda0;
+  --color-brand-300: #FFBC6B;
+  --color-brand-400: #f9a030;
+  --color-brand-500: #F28500;
+  --color-brand-600: #d17300;
+  --color-brand-700: #B76502;
+  --color-brand-800: #8f4e02;
+  --color-brand-900: #6e3c00;
 
-  /* ---- Neutral grays — structure ---- */
-  --color-ink-50: #f8fafc;
-  --color-ink-100: #f1f5f9;
-  --color-ink-200: #e2e8f0;
-  --color-ink-300: #cbd5e1;
-  --color-ink-400: #94a3b8;
-  --color-ink-500: #64748b;
-  --color-ink-600: #475569;
-  --color-ink-700: #334155;
-  --color-ink-800: #1e293b;
-  --color-ink-900: #0f172a;
-  --color-ink-950: #020617;
+  /* ---- Neutral / Secondary — #546570 main, #272B2E dark, #EFEEEE light ---- */
+  --color-ink-50:  #f7f8f8;
+  --color-ink-100: #EFEEEE;
+  --color-ink-200: #d8dcde;
+  --color-ink-300: #b8c0c5;
+  --color-ink-400: #8a979f;
+  --color-ink-500: #546570;
+  --color-ink-600: #475a64;
+  --color-ink-700: #3a4a53;
+  --color-ink-800: #2f3c44;
+  --color-ink-900: #272B2E;
+  --color-ink-950: #1a1e21;
 
   /* ---- Status — green / amber / red ---- */
   --color-success: #16a34a;
@@ -63,9 +63,35 @@
   --radius-2xl: 1.5rem;
 
   /* ---- Elevation ---- */
-  --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06);
-  --shadow-elevated: 0 4px 12px -2px rgb(15 23 42 / 0.08), 0 2px 6px -2px rgb(15 23 42 / 0.06);
-  --shadow-popover: 0 12px 32px -8px rgb(15 23 42 / 0.16);
+  --shadow-card: 0 1px 2px 0 rgb(39 43 46 / 0.04), 0 1px 3px 0 rgb(39 43 46 / 0.06);
+  --shadow-elevated: 0 4px 12px -2px rgb(39 43 46 / 0.08), 0 2px 6px -2px rgb(39 43 46 / 0.06);
+  --shadow-popover: 0 12px 32px -8px rgb(39 43 46 / 0.16);
+}
+
+/* Force override — ensures correct tokens even when Turbopack HMR skips @theme recompile */
+:root {
+  --color-brand-50:  #fff8ed;
+  --color-brand-100: #ffefd0;
+  --color-brand-200: #ffdda0;
+  --color-brand-300: #FFBC6B;
+  --color-brand-400: #f9a030;
+  --color-brand-500: #F28500;
+  --color-brand-600: #d17300;
+  --color-brand-700: #B76502;
+  --color-brand-800: #8f4e02;
+  --color-brand-900: #6e3c00;
+
+  --color-ink-50:  #f7f8f8;
+  --color-ink-100: #EFEEEE;
+  --color-ink-200: #d8dcde;
+  --color-ink-300: #b8c0c5;
+  --color-ink-400: #8a979f;
+  --color-ink-500: #546570;
+  --color-ink-600: #475a64;
+  --color-ink-700: #3a4a53;
+  --color-ink-800: #2f3c44;
+  --color-ink-900: #272B2E;
+  --color-ink-950: #1a1e21;
 }
 
 @layer base {

@@ -6,12 +6,31 @@ export const coContent: CountryContent = {
   locale: "es-CO",
   currency: "COP",
   dictionary: {
-    nav: { home: "Inicio", about: "Nosotros", pricing: "Precios", contact: "Contacto" },
+    nav: {
+      home: "Inicio",
+      about: "Nosotros",
+      pricing: "Precios",
+      contact: "Contacto",
+      features: "Funciones",
+      resources: "Recursos",
+      assetManagement: "Gestión de activos",
+      calendar: "Calendario",
+      multiLocations: "Múltiples ubicaciones",
+      prestartChecklist: "Lista de verificación",
+      blog: "Blog",
+      learning: "Centro de aprendizaje",
+      manageAssets: "Gestionar activos",
+      stayCompliant: "Mantener cumplimiento",
+      learn: "Aprender",
+    },
     actions: {
       login: "Iniciar sesión",
       freeTrial: "Prueba gratis",
       startFreeTrial: "Comenzar prueba gratis",
       viewPricing: "Ver precios",
+      getStartedFree: "Comenzar gratis",
+      talkToSales: "Hablar con ventas",
+      exploreFeatures: "Explorar funciones",
     },
     hero: {
       badge: "Activos · Inspecciones · Cumplimiento",
@@ -20,6 +39,11 @@ export const coContent: CountryContent = {
       titleTrail: "en un solo lugar seguro",
       subtitle:
         "Una plataforma en la nube para la gestión de equipos de izaje, activos e inspecciones de flotas en minería, construcción y cumplimiento industrial.",
+      trustSignals: [
+        "No se requiere tarjeta de crédito",
+        "Importa tus registros actuales",
+        "Cancela cuando quieras",
+      ],
     },
     pricing: {
       eyebrow: "Precios",
@@ -30,11 +54,65 @@ export const coContent: CountryContent = {
       custom: "Personalizado",
       mostPopular: "Más popular",
       note: "Todos los precios en COP. Sin costos de instalación. Cancela cuando quieras.",
+      comparePlans: "Comparar planes",
+      compareSubtitle: "Todo lo que incluye cada plan, lado a lado.",
+      featureColumn: "Función",
+      categories: {
+        core: "Básico",
+        compliance: "Cumplimiento",
+        teamLocations: "Equipo y ubicaciones",
+        enterprise: "Empresarial",
+        support: "Soporte",
+      },
+      faqTitle: "Preguntas frecuentes",
+      stillHaveQuestions: "¿Aún tienes preguntas?",
+      stillHaveQuestionsSubtitle:
+        "Habla con nuestro equipo — te ayudaremos a encontrar el plan adecuado para tu operación.",
+      faqItems: [
+        {
+          q: "¿Hay una prueba gratis?",
+          a: "Sí — cada plan comienza con una prueba gratis con todas las funciones. No se requiere tarjeta de crédito. Puedes importar tu registro de activos existente y ver todo funcionando antes de pagar.",
+        },
+        {
+          q: "¿Puedo cambiar de plan más adelante?",
+          a: "Por supuesto. Puedes cambiar tu plan en cualquier momento. Las mejoras entran en vigor de inmediato; los cambios a un plan inferior se aplican en el siguiente ciclo de facturación.",
+        },
+        {
+          q: "¿Cómo funciona la función de múltiples ubicaciones?",
+          a: "Los planes Pro y Empresarial te permiten crear ubicaciones ilimitadas dentro de una sola cuenta. Cada sitio tiene su propia lista de activos, miembros del equipo y calendario de cumplimiento, mientras los administradores tienen una vista global.",
+        },
+        {
+          q: "¿Funciona Regatta Registers sin conexión?",
+          a: "El modo sin conexión está disponible en los planes Pro y Empresarial. Los inspectores pueden completar checklists en campo sin conexión — los datos se sincronizan automáticamente al reconectarse.",
+        },
+        {
+          q: "¿Puedo importar mis datos existentes?",
+          a: "Sí. Todos los planes permiten importación masiva en CSV de tus registros de activos. Nuestro equipo puede ayudarte con la migración en los planes Pro y Empresarial.",
+        },
+        {
+          q: "¿Qué normas de cumplimiento son compatibles?",
+          a: "De serie admitimos las normas AS/NZS 4991, ISO 9927 y OSHA para equipos de izaje. Los clientes empresariales pueden configurar normas personalizadas.",
+        },
+        {
+          q: "¿Están seguros mis datos?",
+          a: "Sí. Los datos están cifrados en tránsito y en reposo, alojados en infraestructura SOC 2. Los planes empresariales incluyen SSO/SAML y controles de acceso avanzados.",
+        },
+        {
+          q: "¿Qué métodos de pago aceptan?",
+          a: "Aceptamos todas las tarjetas de crédito principales. Los clientes empresariales pueden acordar pago por transferencia bancaria u orden de compra.",
+        },
+      ],
     },
     footer: {
       tagline:
         "Gestión de activos, inspecciones y cumplimiento para entornos de minería, construcción e industria.",
-      groups: { product: "Producto", company: "Compañía", account: "Cuenta" },
+      groups: {
+        product: "Producto",
+        features: "Funciones",
+        resources: "Recursos",
+        company: "Compañía",
+        account: "Cuenta",
+      },
       links: {
         overview: "Resumen",
         pricing: "Precios",
@@ -42,6 +120,8 @@ export const coContent: CountryContent = {
         about: "Nosotros",
         contact: "Contacto",
         login: "Iniciar sesión",
+        blog: "Blog",
+        learning: "Centro de aprendizaje",
       },
       rights: "Todos los derechos reservados.",
       builtFor: "Hecho para el cumplimiento industrial.",
@@ -109,31 +189,26 @@ export const coContent: CountryContent = {
       items: [
         {
           title: "Gestión centralizada",
-          description:
-            "Administra todos los activos, registros y registros de inspección en un sistema seguro.",
+          description: "Administra todos los activos, registros e inspecciones en un sistema seguro.",
         },
         {
           title: "Visibilidad en tiempo real",
-          description:
-            "Conoce el estado en vivo de cada activo e inspección de un vistazo.",
+          description: "Conoce el estado en vivo de cada activo e inspección de un vistazo.",
         },
         {
           title: "Gestión de activos y flotas",
-          description:
-            "Controla equipos, flotas y componentes en múltiples sitios.",
+          description: "Controla equipos, flotas y componentes en múltiples sitios.",
         },
         {
           title: "Cumplimiento automatizado",
-          description:
-            "Nunca pierdas una inspección con programación y alertas automáticas.",
+          description: "Nunca pierdas una inspección con programación y alertas automáticas.",
         },
       ],
     },
     how: {
       eyebrow: "Cómo funciona",
       title: "En marcha en seis pasos",
-      subtitle:
-        "Sin costos de instalación. Importa tus registros existentes y crece a tu ritmo.",
+      subtitle: "Sin costos de instalación. Importa tus registros existentes y crece a tu ritmo.",
       steps: [
         { title: "Sin costos de instalación", description: "Empieza gratis, sin cuotas iniciales ni hardware." },
         { title: "Configura tu estructura", description: "Configura tus sitios, tipos de activos y equipos." },
@@ -147,12 +222,42 @@ export const coContent: CountryContent = {
       eyebrow: "Industrias",
       title: "Hecho para entornos pesados y regulados",
       subtitle: "Con la confianza de las industrias donde el cumplimiento no puede fallar.",
+      badge: "Cumplimiento · Inspecciones · Activos",
       items: [
         { title: "Minería", description: "Registros de activos e inspecciones para minas exigentes." },
         { title: "Construcción", description: "Mantén la maquinaria y los equipos en cumplimiento en cada proyecto." },
         { title: "Equipos de izaje", description: "Gestiona grúas, eslingas y aparejos con trazabilidad completa." },
         { title: "Cumplimiento industrial", description: "Estandariza registros y mantente listo para auditorías." },
       ],
+    },
+    trustBar: {
+      stats: [
+        { value: "10.000+", label: "Activos gestionados" },
+        { value: "98%", label: "Inspecciones a tiempo" },
+        { value: "< 5 min", label: "Tiempo promedio de configuración" },
+      ],
+      usedIn: "Usado en",
+      industries: ["Minería", "Construcción", "Izaje y aparejo", "Petróleo y gas"],
+    },
+    liftingEquipment: {
+      eyebrow: "Nuestra especialidad",
+      title: "El sistema digital de cumplimiento",
+      titleHighlight: "para equipos de izaje",
+      subtitle:
+        "Los equipos de izaje tienen exigencias de cumplimiento únicas: certificados de prueba, capacidades nominales, inspecciones periódicas y verificaciones de disponibilidad en tiempo real. Regatta Registers fue construido para estos requisitos desde el primer día.",
+      features: [
+        { title: "Código QR", description: "Escanea cualquier activo para acceder al registro, historial y próxima inspección al instante." },
+        { title: "Modo sin conexión", description: "Completa inspecciones en campo — los datos se sincronizan automáticamente al reconectarte." },
+        { title: "Personalización", description: "Crea formularios, campos y flujos de trabajo personalizados para tus requisitos de cumplimiento." },
+        { title: "Normas de cumplimiento", description: "Compatible con normas AS/NZS, ISO y OSHA para equipos de izaje de fábrica." },
+        { title: "Gestión de activos", description: "Seguimiento del ciclo de vida completo desde la adquisición hasta el retiro de cada equipo." },
+        { title: "Múltiples ubicaciones", description: "Gestiona equipos de izaje en cada sitio, depósito y proyecto desde una sola cuenta." },
+        { title: "Reservas", description: "Programa y reserva equipos para próximos trabajos — siempre sabe qué está disponible." },
+        { title: "Disponibilidad", description: "Estado de cumplimiento de un vistazo para saber qué está habilitado antes de movilizar." },
+        { title: "Carga masiva", description: "Importa tu registro completo desde una hoja de cálculo en minutos — sin pérdida de datos." },
+      ],
+      ctaPrimary: "Comenzar prueba gratis",
+      ctaSecondary: "Explorar todas las funciones",
     },
     cta: {
       title: "¿Listo para tomar el control de tu cumplimiento?",
@@ -168,8 +273,7 @@ export const coContent: CountryContent = {
       "Regatta Registers ayuda a las operaciones con muchos activos a reemplazar el papel y las hojas de cálculo con un único sistema, listo para auditorías, de activos, inspecciones y cumplimiento.",
     mission: {
       title: "Nuestra misión",
-      body:
-        "Hacer que el cumplimiento sea sencillo para las industrias que mueven el mundo, para que los equipos dediquen menos tiempo a tareas administrativas y más a un trabajo seguro y productivo.",
+      body: "Hacer que el cumplimiento sea sencillo para las industrias que mueven el mundo, para que los equipos dediquen menos tiempo a tareas administrativas y más a un trabajo seguro y productivo.",
     },
     stats: [
       { value: "10k+", label: "Activos gestionados" },
@@ -195,8 +299,7 @@ export const coContent: CountryContent = {
   contactPage: {
     eyebrow: "Contacto",
     title: "Habla con el equipo de Regatta Registers",
-    subtitle:
-      "¿Preguntas sobre implementación, flujos de cumplimiento o precios? Estamos para ayudarte.",
+    subtitle: "¿Preguntas sobre implementación, flujos de cumplimiento o precios? Estamos para ayudarte.",
     form: {
       name: "Nombre completo",
       company: "Empresa",
@@ -222,8 +325,7 @@ export const coContent: CountryContent = {
     freeTrial: {
       eyebrow: "Prueba gratis",
       title: "Comienza en minutos",
-      subtitle:
-        "Crea tu espacio de trabajo, importa tus datos y ve el seguimiento de cumplimiento funcionar de principio a fin.",
+      subtitle: "Crea tu espacio de trabajo, importa tus datos y ve el seguimiento de cumplimiento funcionar de principio a fin.",
       perks: [
         "Sin costos de instalación",
         "Importa tus registros existentes",
