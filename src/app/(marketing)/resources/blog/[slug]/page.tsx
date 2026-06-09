@@ -1,11 +1,40 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { ArrowLeft } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { postBySlugQuery, postsListQuery } from "@/sanity/queries";
 import { Section } from "@/components/ui/section";
+
+type ImageAsset = { url?: string };
+type CoverImage = { asset?: ImageAsset; alt?: string };
+type BodyImage = { _type: "image"; asset?: ImageAsset; alt?: string; caption?: string };
+
+const portableTextComponents = {
+  types: {
+    image: ({ value }: { value: BodyImage }) => {
+      if (!value?.asset?.url) return null;
+      return (
+        <figure className="my-8">
+          <div className="relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: "16/9" }}>
+            <Image
+              src={value.asset.url}
+              alt={value.alt ?? ""}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="mt-2 text-center text-sm text-ink-400">{value.caption}</figcaption>
+          )}
+        </figure>
+      );
+    },
+  },
+};
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -34,7 +63,16 @@ function formatDate(iso: string) {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await client.fetch(postBySlugQuery, { slug });
+  const post = await client.fetch(postBySlugQuery, { slug }) as {
+    title: string;
+    category?: string;
+    publishedAt?: string;
+    excerpt?: string;
+    coverImage?: CoverImage;
+    body?: unknown[];
+    seoTitle?: string;
+    seoDescription?: string;
+  } | null;
   if (!post) notFound();
 
   return (
@@ -64,9 +102,22 @@ export default async function BlogPostPage({ params }: Props) {
         )}
       </header>
 
+      {post.coverImage?.asset?.url && (
+        <div className="relative mb-10 h-72 w-full overflow-hidden rounded-xl sm:h-96">
+          <Image
+            src={post.coverImage.asset.url}
+            alt={post.coverImage.alt ?? post.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 800px"
+            priority
+          />
+        </div>
+      )}
+
       {post.body && (
         <div className="prose prose-slate max-w-none prose-headings:font-bold prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline">
-          <PortableText value={post.body} />
+          <PortableText value={post.body} components={portableTextComponents} />
         </div>
       )}
     </Section>

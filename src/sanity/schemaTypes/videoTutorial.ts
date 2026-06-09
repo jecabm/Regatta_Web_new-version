@@ -45,6 +45,18 @@ export const videoTutorial = defineType({
       description: 'Display duration, e.g. "4:32" or "5 min".',
     }),
     defineField({
+      name: 'startTime',
+      title: 'Start Time (seconds)',
+      type: 'number',
+      description: 'Clip start in seconds — leave blank to play from the beginning.',
+    }),
+    defineField({
+      name: 'endTime',
+      title: 'End Time (seconds)',
+      type: 'number',
+      description: 'Clip end in seconds — leave blank to play to the end.',
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',

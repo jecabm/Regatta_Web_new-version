@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { postsListQuery } from "@/sanity/queries";
 import { Section } from "@/components/ui/section";
@@ -35,6 +36,7 @@ export default async function BlogPage() {
     excerpt?: string;
     publishedAt?: string;
     category?: string;
+    coverImage?: { asset?: { url?: string }; alt?: string };
   }>;
 
   return (
@@ -60,7 +62,18 @@ export default async function BlogPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <Link key={post._id} href={`/resources/blog/${post.slug.current}`} className="group">
-                <Card interactive className="h-full">
+                <Card interactive className="h-full overflow-hidden">
+                  {post.coverImage?.asset?.url && (
+                    <div className="relative h-48 w-full overflow-hidden">
+                      <Image
+                        src={post.coverImage.asset.url}
+                        alt={post.coverImage.alt ?? post.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
                   <CardHeader>
                     {post.category && (
                       <span className="text-xs font-semibold uppercase tracking-wider text-brand-600">

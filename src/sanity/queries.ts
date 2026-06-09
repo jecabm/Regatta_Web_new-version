@@ -8,7 +8,7 @@ export const postsListQuery = defineQuery(`
     excerpt,
     publishedAt,
     category,
-    coverImage
+    coverImage { ..., asset-> }
   }
 `)
 
@@ -20,8 +20,11 @@ export const postBySlugQuery = defineQuery(`
     excerpt,
     publishedAt,
     category,
-    coverImage,
-    body,
+    coverImage { ..., asset-> },
+    body[] {
+      ...,
+      _type == "image" => { ..., asset-> }
+    },
     seoTitle,
     seoDescription
   }
@@ -98,8 +101,10 @@ export const videoTutorialsQuery = defineQuery(`
     title,
     description,
     videoUrl,
-    thumbnail,
+    thumbnail { ..., asset-> },
     duration,
+    startTime,
+    endTime,
     category,
     order,
     featured

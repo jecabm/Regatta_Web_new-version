@@ -3,7 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { learningItemsQuery, videoTutorialsQuery } from "@/sanity/queries";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { LearningFaq } from "@/components/marketing/learning-faq";
-import { VideoTutorialsGrid } from "@/components/marketing/video-tutorials-grid";
+import { VideoTutorialsSection } from "@/components/marketing/video-tutorials-section";
 import type { PortableTextBlock } from "@portabletext/types";
 
 export const metadata: Metadata = {
@@ -12,17 +12,6 @@ export const metadata: Metadata = {
     "Step-by-step video tutorials and answers to common questions to help you get the most out of Regatta Registers.",
 };
 
-const categoryLabels: Record<string, string> = {
-  "getting-started": "Getting Started",
-  "create-company": "Company",
-  registers: "Registers",
-  inspections: "Inspections",
-  "asset-register": "Asset Register",
-  compliance: "Compliance & Reporting",
-  account: "Account & Billing",
-};
-
-// categoryLabels used for video tutorial section headings only
 type FaqItem = {
   _id: string;
   question: string;
@@ -37,8 +26,10 @@ type VideoTutorial = {
   title: string;
   description?: string;
   videoUrl: string;
-  thumbnail?: { asset: { _ref: string }; alt?: string };
+  thumbnail?: { asset?: { url?: string }; alt?: string };
   duration?: string;
+  startTime?: number;
+  endTime?: number;
   category?: string;
   order?: number;
   featured?: boolean;
@@ -49,13 +40,6 @@ export default async function LearningPage() {
     client.fetch(learningItemsQuery) as Promise<FaqItem[]>,
     client.fetch(videoTutorialsQuery) as Promise<VideoTutorial[]>,
   ]);
-
-  const groupedVideos = videos.reduce<Record<string, VideoTutorial[]>>((acc, v) => {
-    const key = v.category ?? "other";
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(v);
-    return acc;
-  }, {});
 
   return (
     <>
@@ -82,21 +66,12 @@ export default async function LearningPage() {
           className="mb-10"
         />
 
-        {Object.keys(groupedVideos).length === 0 ? (
+        {videos.length === 0 ? (
           <div className="py-12 text-center">
             <p className="text-ink-400">Video tutorials coming soon — check back shortly.</p>
           </div>
         ) : (
-          <div className="space-y-14">
-            {Object.entries(groupedVideos).map(([category, categoryVideos]) => (
-              <div key={category}>
-                <h3 className="mb-6 text-xs font-semibold uppercase tracking-wider text-ink-400">
-                  {categoryLabels[category] ?? category}
-                </h3>
-                <VideoTutorialsGrid videos={categoryVideos} />
-              </div>
-            ))}
-          </div>
+          <VideoTutorialsSection videos={videos} />
         )}
       </Section>
 
