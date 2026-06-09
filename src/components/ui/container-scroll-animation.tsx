@@ -53,7 +53,7 @@ export function ContainerScroll({
     <div
       ref={containerRef}
       className={cn(
-        "relative flex h-[64rem] items-start justify-center px-2 pt-32 md:h-[95rem] md:px-20 md:pt-52",
+        "relative flex h-192 items-start justify-center px-2 pt-10 sm:h-240 sm:px-4 sm:pt-16 md:h-380 md:px-2 md:pt-24 lg:px-20 lg:pt-52",
         className
       )}
     >
@@ -104,7 +104,7 @@ function CardFrame({
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="mx-auto mt-8 h-[26rem] w-full max-w-5xl rounded-[30px] border-4 border-ink-700 bg-ink-900 p-2 shadow-2xl md:mt-10 md:h-[36rem] md:p-4"
+      className="mx-auto mt-4 h-80 w-full max-w-5xl rounded-2xl border-2 border-ink-700 bg-ink-900 p-1 shadow-2xl sm:mt-6 sm:h-104 sm:rounded-[30px] md:mt-10 md:h-144 md:border-4 md:p-4"
     >
       <div className="h-full w-full overflow-hidden rounded-2xl bg-white">
         {children}

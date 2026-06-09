@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { learningItemsQuery, videoTutorialsQuery } from "@/sanity/queries";
 import { Section, SectionHeading } from "@/components/ui/section";
-import { LearningAccordion } from "@/components/marketing/learning-accordion";
+import { LearningFaq } from "@/components/marketing/learning-faq";
 import { VideoTutorialsGrid } from "@/components/marketing/video-tutorials-grid";
 import type { PortableTextBlock } from "@portabletext/types";
 
@@ -14,12 +14,15 @@ export const metadata: Metadata = {
 
 const categoryLabels: Record<string, string> = {
   "getting-started": "Getting Started",
+  "create-company": "Company",
+  registers: "Registers",
   inspections: "Inspections",
   "asset-register": "Asset Register",
   compliance: "Compliance & Reporting",
   account: "Account & Billing",
 };
 
+// categoryLabels used for video tutorial section headings only
 type FaqItem = {
   _id: string;
   question: string;
@@ -46,13 +49,6 @@ export default async function LearningPage() {
     client.fetch(learningItemsQuery) as Promise<FaqItem[]>,
     client.fetch(videoTutorialsQuery) as Promise<VideoTutorial[]>,
   ]);
-
-  const groupedFaq = faqItems.reduce<Record<string, FaqItem[]>>((acc, item) => {
-    const key = item.category ?? "other";
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(item);
-    return acc;
-  }, {});
 
   const groupedVideos = videos.reduce<Record<string, VideoTutorial[]>>((acc, v) => {
     const key = v.category ?? "other";
@@ -105,31 +101,14 @@ export default async function LearningPage() {
       </Section>
 
       {/* FAQ */}
-      <Section size="default">
+      <Section size="wide">
         <SectionHeading
           align="left"
           eyebrow="FAQ"
           title="Frequently asked questions"
-          description="Can't find the answer? Contact our support team."
           className="mb-10"
         />
-
-        {Object.keys(groupedFaq).length === 0 ? (
-          <div className="py-12 text-center">
-            <p className="text-ink-400">FAQ content coming soon — check back shortly.</p>
-          </div>
-        ) : (
-          <div className="space-y-14">
-            {Object.entries(groupedFaq).map(([category, items]) => (
-              <div key={category}>
-                <h3 className="mb-6 text-xs font-semibold uppercase tracking-wider text-ink-400">
-                  {categoryLabels[category] ?? category}
-                </h3>
-                <LearningAccordion items={items} />
-              </div>
-            ))}
-          </div>
-        )}
+        <LearningFaq items={faqItems} />
       </Section>
     </>
   );

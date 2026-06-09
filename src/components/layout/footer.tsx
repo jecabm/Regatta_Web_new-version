@@ -37,8 +37,8 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-ink-200 bg-ink-50">
       <Container size="wide" className="py-14">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
-          <div className="max-w-xs">
+        <div className="grid gap-6 sm:gap-8 md:gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)] text-center sm:text-left">
+          <div className="flex flex-col items-center sm:items-start max-w-xs mx-auto sm:mx-0">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-ink-500">
               {f.tagline}
@@ -66,7 +66,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-ink-200 pt-8 text-sm text-ink-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col items-center gap-3 border-t border-ink-200 pt-6 text-sm text-ink-500 text-center sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:pt-8 sm:text-left">
           <p>
             © {year} {siteConfig.name}. {f.rights}
           </p>

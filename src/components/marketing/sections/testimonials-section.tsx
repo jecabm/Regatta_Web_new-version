@@ -22,7 +22,7 @@ export async function TestimonialsSection() {
         eyebrow="What our customers say"
         title="Trusted by industrial operators across Australia"
       />
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 sm:grid-cols-2 md:mt-14 lg:grid-cols-3">
         {testimonials.map((t) => (
           <Card key={t._id} className="flex h-full flex-col">
             <CardHeader className="flex-1">

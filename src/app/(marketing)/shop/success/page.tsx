@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import { Button } from "@/components/ui/button";
@@ -24,7 +23,7 @@ export default function ShopSuccessPage() {
         Order confirmed!
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-500">
-        Thank you for your purchase. You'll receive a confirmation email shortly with your order details and tracking information.
+        Thank you for your purchase. You&apos;ll receive a confirmation email shortly with your order details and tracking information.
       </p>
       <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <Button href="/shop">Continue Shopping</Button>

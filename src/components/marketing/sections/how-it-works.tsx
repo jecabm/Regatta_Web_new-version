@@ -15,7 +15,7 @@ export function HowItWorks() {
         title={how.title}
         description={how.subtitle}
       />
-      <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <ol className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
         {how.steps.map((step, i) => (
           <li
             key={step.title}

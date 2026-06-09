@@ -66,7 +66,16 @@ export const learningItemsQuery = defineQuery(`
   *[_type == "learningItem"] | order(category asc, order asc) {
     _id,
     question,
-    answer,
+    answer[] {
+      ...,
+      _type == "videoFile" => {
+        ...,
+        file {
+          ...,
+          asset-> { url }
+        }
+      }
+    },
     videoUrl,
     category,
     order,

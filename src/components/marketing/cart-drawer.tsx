@@ -77,7 +77,7 @@ export function CartDrawer({ open, onClose }: Props) {
         ref={ref}
         className={cn(
           "fixed right-0 top-0 z-50 flex h-full w-full max-w-sm flex-col bg-white shadow-popover transition-transform duration-300",
-          open ? "translate-x-0" : "translate-x-full"
+          open ? "translate-x-0 visible" : "translate-x-full invisible"
         )}
       >
         {/* Header */}

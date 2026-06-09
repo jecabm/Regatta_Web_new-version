@@ -58,12 +58,12 @@ function MegaMenuPanel({
       <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8">
         <div
           className={cn(
-            "grid gap-8",
+            "grid gap-6",
             hasFeatured
               ? columns.length === 1
-                ? "grid-cols-[1fr_320px]"
-                : "grid-cols-[repeat(2,1fr)_320px]"
-              : `grid-cols-${columns.length}`
+                ? "grid-cols-1 lg:grid-cols-[1fr_280px]"
+                : "grid-cols-1 lg:grid-cols-[repeat(2,1fr)_280px]"
+              : `grid-cols-1 md:grid-cols-${columns.length}`
           )}
         >
           {/* Content columns */}
@@ -231,7 +231,11 @@ export function Header() {
           </Button>
         </div>
 
-        <MobileNav />
+        {/* Mobile-only: country selector + hamburger grouped on the right */}
+        <div className="flex items-center gap-1 md:hidden">
+          <CountrySelector />
+          <MobileNav />
+        </div>
       </div>
 
       {/* Mega menu panel — rendered at header level so it spans full width */}

@@ -52,14 +52,14 @@ export function IndustriesSection() {
         title={industries.title}
         description={industries.subtitle}
       />
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 sm:grid-cols-2 md:grid-cols-3 lg:mt-14 lg:grid-cols-4">
         {industries.items.map((item, i) => {
           const Icon = icons[i % icons.length];
           const card = cards[i % cards.length];
           return (
             <div
               key={item.title}
-              className={`relative overflow-hidden rounded-2xl ${card.bg} p-6`}
+              className={`relative overflow-hidden rounded-2xl ${card.bg} p-4 sm:p-6`}
             >
               {/* Subtle dot texture */}
               <div

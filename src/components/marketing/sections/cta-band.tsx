@@ -11,14 +11,14 @@ export function CtaBand() {
 
   return (
     <section className="bg-ink-900">
-      <Container className="py-16 text-center sm:py-20">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <Container className="py-12 text-center sm:py-16 md:py-20">
+        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
           {cta.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-ink-300">
+        <p className="mx-auto mt-4 max-w-xl text-base text-ink-300 sm:text-lg">
           {cta.subtitle}
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3">
           <Button href="/free-trial" size="lg">
             {cta.primary}
           </Button>

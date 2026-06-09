@@ -12,9 +12,9 @@ type SectionProps = React.HTMLAttributes<HTMLElement> & {
 };
 
 const spacingMap = {
-  sm: "py-12 sm:py-16",
-  md: "py-16 sm:py-20",
-  lg: "py-20 sm:py-28",
+  sm: "py-8 sm:py-12 md:py-16",
+  md: "py-12 sm:py-16 md:py-20",
+  lg: "py-16 sm:py-20 md:py-28",
 } as const;
 
 /** Page section: consistent vertical rhythm + centered content track. */
@@ -65,11 +65,11 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">
+      <h2 className="mt-3 text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl md:text-4xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-lg leading-relaxed text-ink-500">{description}</p>
+        <p className="mt-4 text-base leading-relaxed text-ink-500 sm:text-lg">{description}</p>
       )}
     </div>
   );

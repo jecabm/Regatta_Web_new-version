@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CountrySelector } from "@/components/layout/country-selector";
 import { cn } from "@/lib/utils";
 import { mainNav, ctaNav, isNavGroup } from "@/config/site";
 import { useCountry } from "@/hooks/use-country";
@@ -35,10 +34,14 @@ function t(nav: NavDict, key: string): string {
 /** Mobile-first hamburger menu + slide-down drawer. */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
   const pathname = usePathname();
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false);
+    setExpandedGroup(null);
+  };
   const { content } = useCountry();
-  const { nav, actions, selector } = content.dictionary;
+  const { nav, actions } = content.dictionary;
 
   // Lock body scroll while the drawer is open.
   useEffect(() => {
@@ -52,7 +55,7 @@ export function MobileNav() {
     <div className="md:hidden">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => { setOpen((v) => !v); setExpandedGroup(null); }}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         className="grid h-10 w-10 place-items-center rounded-md text-ink-700 hover:bg-ink-100"
@@ -65,30 +68,56 @@ export function MobileNav() {
           <nav className="flex flex-col gap-1 p-4">
             {mainNav.map((entry) => {
               if (isNavGroup(entry)) {
+                const isExpanded = expandedGroup === entry.key;
+                const hasActiveChild = entry.children.some((c) =>
+                  pathname.startsWith(c.href)
+                );
                 return (
                   <div key={entry.key}>
-                    <p className="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wider text-ink-400">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedGroup(isExpanded ? null : entry.key)
+                      }
+                      aria-expanded={isExpanded}
+                      className={cn(
+                        "flex w-full items-center justify-between rounded-md px-3 py-3 text-base font-medium transition-colors",
+                        hasActiveChild
+                          ? "text-brand-700"
+                          : "text-ink-700 hover:bg-ink-100"
+                      )}
+                    >
                       {t(nav, entry.key)}
-                    </p>
-                    {entry.children.map((item) => {
-                      const isActive = pathname.startsWith(item.href);
-                      return (
-                        <Link
-                          key={item.key}
-                          href={item.href}
-                          onClick={close}
-                          aria-current={isActive ? "page" : undefined}
-                          className={cn(
-                            "block rounded-md px-5 py-2.5 text-sm font-medium",
-                            isActive
-                              ? "bg-brand-50 text-brand-700"
-                              : "text-ink-700 hover:bg-ink-100"
-                          )}
-                        >
-                          {t(nav, item.key)}
-                        </Link>
-                      );
-                    })}
+                      <ChevronDown
+                        className={cn(
+                          "h-4 w-4 shrink-0 text-ink-400 transition-transform duration-200",
+                          isExpanded && "rotate-180"
+                        )}
+                      />
+                    </button>
+                    {isExpanded && (
+                      <div className="pl-2 pb-1">
+                        {entry.children.map((item) => {
+                          const isActive = pathname.startsWith(item.href);
+                          return (
+                            <Link
+                              key={item.key}
+                              href={item.href}
+                              onClick={close}
+                              aria-current={isActive ? "page" : undefined}
+                              className={cn(
+                                "block rounded-md px-5 py-2.5 text-sm font-medium",
+                                isActive
+                                  ? "bg-brand-50 text-brand-700"
+                                  : "text-ink-700 hover:bg-ink-100"
+                              )}
+                            >
+                              {t(nav, item.key)}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 );
               }
@@ -115,10 +144,6 @@ export function MobileNav() {
             })}
 
             <div className="mt-3 flex flex-col gap-3 border-t border-ink-200 pt-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-ink-500">{selector.label}</span>
-                <CountrySelector />
-              </div>
               <Button href={ctaNav.login.href} onClick={close} variant="outline" size="lg">
                 {actions.login}
               </Button>

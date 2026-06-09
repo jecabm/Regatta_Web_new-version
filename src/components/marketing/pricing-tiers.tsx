@@ -205,8 +205,8 @@ export function PricingTiers() {
         </Container>
       </section>
 
-      {/* Comparison table */}
-      <section className="border-t border-ink-200 bg-ink-50 py-16 sm:py-20">
+      {/* Comparison table — hidden on mobile, visible from sm (640px) up */}
+      <section className="hidden sm:block border-t border-ink-200 bg-ink-50 py-16 sm:py-20">
         <Container size="wide">
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">

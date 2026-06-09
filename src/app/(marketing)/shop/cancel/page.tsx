@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
@@ -13,7 +12,7 @@ export default function ShopCancelPage() {
         Payment cancelled
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-500">
-        No charges were made. Your cart has been saved — head back to the shop whenever you're ready.
+        No charges were made. Your cart has been saved — head back to the shop whenever you&apos;re ready.
       </p>
       <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <Button href="/shop">Return to Shop</Button>

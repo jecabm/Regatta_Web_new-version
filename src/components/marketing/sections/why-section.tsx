@@ -24,7 +24,7 @@ export function WhySection() {
         title={why.title}
         description={why.subtitle}
       />
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
         {why.items.map((item, i) => {
           const Icon = icons[i % icons.length];
           return (

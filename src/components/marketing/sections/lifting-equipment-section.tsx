@@ -24,7 +24,7 @@ export function LiftingEquipmentSection() {
 
   return (
     <section className="bg-ink-900">
-      <Container size="wide" className="py-20 sm:py-28">
+      <Container size="wide" className="py-12 sm:py-20 md:py-28">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-400">
             {liftingEquipment.eyebrow}
