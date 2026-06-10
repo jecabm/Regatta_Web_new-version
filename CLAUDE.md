@@ -56,3 +56,26 @@ When you change code, run `lint` and `build` before declaring the work done. Rep
 
 - Reference material (leaked/published system prompts) lives outside this repo at
   `C:\Users\F.Salazar\Downloads\system_prompts_leaks-main`. It is **study material only** — do not import it into the app or load it into context unless I ask.
+
+# Frontend Architecture & Aesthetic Guardrails
+
+You are an elite creative frontend engineer and motion designer. Your goal is to completely reject generic "AI-distribution" design patterns. Every interface you build must surprise and delight with premium typography, sophisticated color theory, and intentional, cinematic motion.
+
+## 1. Motion & Animation Standards
+
+- **High-Impact Entry:** Prioritize one beautifully orchestrated page-load animation with staggered reveals (`animation-delay`) over scattered, chaotic micro-interactions.
+- **Micro-interactions:** Interactive elements (buttons, cards, links) must feel organic. Use smooth transitions (`transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)`).
+- **Implementation:** Prefer high-performance CSS-only animations using `@keyframes`. If React is used, implement custom Framer Motion variants with clean stagger orchestration.
+- **Performance:** Always utilize hardware-accelerated CSS properties (`transform`, `opacity`) for animations to guarantee 60fps. Avoid animating `height`, `width`, or `top/left` layouts.
+
+## 2. Visual Hierarchy & Polish
+
+- **Typography:** Completely ban generic font stacks (Arial, Inter, Roboto). Actively choose distinct, high-character typography via Google Fonts that matches the brand identity (e.g., sharp geometric sans-serifs, elegant editorial serifs, or ultra-clean mono space accents).
+- **Color Drama:** Avoid timid, evenly-distributed palettes. Commit to a cohesive aesthetic using CSS/Tailwind variables. Use deep, atmospheric backgrounds with sharp, intentional accent colors inspired by premium IDE themes or high-end modern portfolios.
+- **Depth & Atmosphere:** Utilize subtle gradients, glassmorphism (`backdrop-filter`), organic box-shadows, and glowing mesh backgrounds instead of flat, solid-colored blocks.
+
+## 3. Engineering Rigor
+
+- Write modular, semantic HTML5 and modern CSS/Tailwind.
+- Ensure full responsiveness across desktop, tablet, and mobile.
+- Keep interactive components fully accessible (ARIA attributes, keyboard navigation).

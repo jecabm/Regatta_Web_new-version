@@ -117,7 +117,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {post.body && (
         <div className="prose prose-slate max-w-none prose-headings:font-bold prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline">
-          <PortableText value={post.body} components={portableTextComponents} />
+          <PortableText value={post.body as Parameters<typeof PortableText>[0]["value"]} components={portableTextComponents} />
         </div>
       )}
     </Section>

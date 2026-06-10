@@ -123,3 +123,48 @@
     letter-spacing: -0.02em;
   }
 }
+
+/* ─── Cinematic animation system ───────────────────────────────────────────── */
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(0.95) translateY(14px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+@keyframes glow-drift {
+  0%, 100% { transform: translate(0, 0)       scale(1);    opacity: 0.65; }
+  50%       { transform: translate(4%, 2.5%)   scale(1.06); opacity: 1;    }
+}
+
+/* Page-load entry — apply directly to elements, respects animation-delay */
+.animate-fade-slide-up {
+  opacity: 0;
+  animation: fade-slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+  opacity: 0;
+  animation: scale-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-glow-drift {
+  animation: glow-drift 9s ease-in-out infinite;
+}
+
+/* Scroll-reveal — toggled by useInView hook adding .is-visible */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity  0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
