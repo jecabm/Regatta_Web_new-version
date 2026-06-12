@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ArrowRight } from "lucide-react";
@@ -142,11 +142,19 @@ function MegaMenuPanel({
 /** Sticky marketing header with full-width mega menu for Features and Resources. */
 export function Header() {
   const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { content } = useCountry();
   const { nav, actions } = content.dictionary;
 
   const close = useCallback(() => setActiveKey(null), []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Close when the route changes
   const [lastPathname, setLastPathname] = useState(pathname);
@@ -178,7 +186,12 @@ export function Header() {
   return (
     <header
       id="site-header"
-      className="sticky top-0 z-50 border-b border-ink-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled
+          ? "border-b border-white/10 bg-ink-950/95 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      )}
     >
       {/* Nav bar row */}
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6 sm:px-8">
@@ -201,7 +214,7 @@ export function Header() {
                   aria-haspopup="menu"
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium transition-colors",
-                    isActive ? "text-brand-600" : "text-ink-600 hover:text-ink-900"
+                    isActive ? "text-brand-400" : "text-white/70 hover:text-white"
                   )}
                 >
                   {t(nav, entry.key)}
@@ -215,7 +228,12 @@ export function Header() {
               );
             }
             return (
-              <NavLink key={entry.key} href={entry.href} label={t(nav, entry.key)} />
+              <NavLink
+                key={entry.key}
+                href={entry.href}
+                label={t(nav, entry.key)}
+                className="text-white/70 hover:text-white"
+              />
             );
           })}
         </nav>
@@ -223,7 +241,7 @@ export function Header() {
         <div className="hidden items-center gap-3 md:flex">
           <CountrySelector />
           <CartButton />
-          <Button href={ctaNav.login.href} variant="ghost" size="sm">
+          <Button href={ctaNav.login.href} variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10">
             {actions.login}
           </Button>
           <Button href={ctaNav.freeTrial.href} variant="primary" size="sm">
