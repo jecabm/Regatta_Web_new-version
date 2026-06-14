@@ -195,7 +195,7 @@ export function Header() {
     >
       {/* Nav bar row */}
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6 sm:px-8">
-        <Logo />
+        <Logo variant="white" />
 
         <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
           {mainNav.map((entry) => {
