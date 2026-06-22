@@ -47,9 +47,13 @@ export function CountrySelector({ className }: { className?: string }) {
         aria-label={content.dictionary.selector.label}
         className="inline-flex items-center gap-1.5 rounded-md border border-ink-200 bg-white px-2.5 py-1.5 text-sm font-medium text-ink-700 transition-colors hover:bg-ink-50"
       >
-        <span aria-hidden className="text-base leading-none">
-          {meta.flag}
-        </span>
+        <img
+          src={`https://flagcdn.com/24x18/${meta.code.toLowerCase()}.png`}
+          width={24}
+          height={18}
+          alt={meta.code}
+          className="rounded-none"
+        />
         <span className="uppercase">{meta.code}</span>
         <ChevronDown
           className={cn(
@@ -79,9 +83,13 @@ export function CountrySelector({ className }: { className?: string }) {
                       : "text-ink-700 hover:bg-ink-100"
                   )}
                 >
-                  <span aria-hidden className="text-lg leading-none">
-                    {country.flag}
-                  </span>
+                  <img
+                    src={`https://flagcdn.com/24x18/${country.code.toLowerCase()}.png`}
+                    width={24}
+                    height={18}
+                    alt={country.name}
+                    className="rounded-none"
+                  />
                   <span className="flex-1">
                     <span className="block font-medium">{country.name}</span>
                     <span className="block text-xs text-ink-400">

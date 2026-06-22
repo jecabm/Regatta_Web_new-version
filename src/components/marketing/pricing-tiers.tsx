@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Check, Minus, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -242,8 +242,8 @@ export function PricingTiers() {
               </thead>
               <tbody>
                 {comparisonRows.map((group) => (
-                  <>
-                    <tr key={group.categoryKey} className="bg-ink-50">
+                  <React.Fragment key={group.categoryKey}>
+                    <tr className="bg-ink-50">
                       <td
                         colSpan={4}
                         className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-ink-400"
@@ -259,7 +259,7 @@ export function PricingTiers() {
                         <Cell value={row.enterprise} highlight={false} />
                       </tr>
                     ))}
-                  </>
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>

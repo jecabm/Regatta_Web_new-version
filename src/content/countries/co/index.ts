@@ -112,6 +112,7 @@ export const coContent: CountryContent = {
         resources: "Recursos",
         company: "Compañía",
         account: "Cuenta",
+        legal: "Legal",
       },
       links: {
         overview: "Resumen",
@@ -122,6 +123,9 @@ export const coContent: CountryContent = {
         login: "Iniciar sesión",
         blog: "Blog",
         learning: "Centro de aprendizaje",
+        termsOfService: "Términos de servicio",
+        privacyPolicy: "Política de privacidad",
+        cookiePolicy: "Política de cookies",
       },
       rights: "Todos los derechos reservados.",
       builtFor: "Hecho para el cumplimiento industrial.",

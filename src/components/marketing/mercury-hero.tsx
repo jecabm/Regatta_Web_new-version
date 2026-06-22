@@ -18,8 +18,7 @@ export function MercuryHero() {
     const content   = contentRef.current!;
     const dash      = dashRef.current!;
     const hint      = hintRef.current!;
-    const video     = videoRef.current!;
-    if (!zone || !landscape || !overlay || !content || !dash || !hint || !video) return;
+    if (!zone || !landscape || !overlay || !content || !dash || !hint) return;
 
     const clamp    = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
     const lerp     = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -35,12 +34,6 @@ export function MercuryHero() {
       ticking = false;
       const maxScroll = zone.offsetHeight - window.innerHeight;
       const p = clamp(window.scrollY / maxScroll, 0, 1);
-
-      // Video scrub — only the portion where it's visible (p 0 → 0.68)
-      if (video.readyState >= 2 && video.duration) {
-        const videoPortion = clamp(p / 0.68, 0, 1);
-        video.currentTime = videoPortion * video.duration;
-      }
 
       // Landscape: gentle zoom out
       const lScale = mapRange(p, 0, 0.80, 1.05, 1.0);
@@ -105,7 +98,7 @@ export function MercuryHero() {
           }} />
           <video
             ref={videoRef}
-            muted playsInline preload="auto"
+            muted playsInline autoPlay loop preload="auto"
             poster="/laptop-hero.png"
             aria-hidden
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}

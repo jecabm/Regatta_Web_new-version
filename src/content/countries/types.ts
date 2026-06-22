@@ -96,7 +96,7 @@ export interface Dictionary {
   };
   footer: {
     tagline: string;
-    groups: { product: string; features: string; resources: string; company: string; account: string };
+    groups: { product: string; features: string; resources: string; company: string; account: string; legal: string };
     links: {
       overview: string;
       pricing: string;
@@ -106,6 +106,9 @@ export interface Dictionary {
       login: string;
       blog: string;
       learning: string;
+      termsOfService: string;
+      privacyPolicy: string;
+      cookiePolicy: string;
     };
     rights: string;
     builtFor: string;

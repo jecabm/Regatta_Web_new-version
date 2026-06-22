@@ -112,6 +112,7 @@ export const auContent: CountryContent = {
         resources: "Resources",
         company: "Company",
         account: "Account",
+        legal: "Legal",
       },
       links: {
         overview: "Overview",
@@ -122,6 +123,9 @@ export const auContent: CountryContent = {
         login: "Login",
         blog: "Blog",
         learning: "Learning Centre",
+        termsOfService: "Terms of Service",
+        privacyPolicy: "Privacy Policy",
+        cookiePolicy: "Cookie Policy",
       },
       rights: "All rights reserved.",
       builtFor: "Built for industrial compliance.",

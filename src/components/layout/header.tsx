@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ArrowRight } from "lucide-react";
@@ -63,13 +63,15 @@ function MegaMenuPanel({
               ? columns.length === 1
                 ? "grid-cols-1 lg:grid-cols-[1fr_280px]"
                 : "grid-cols-1 lg:grid-cols-[repeat(2,1fr)_280px]"
-              : `grid-cols-1 md:grid-cols-${columns.length}`
+              : `grid-cols-1 md:grid-cols-${columns.length}`,
           )}
         >
           {/* Content columns */}
-          <div className={cn("grid gap-8", columns.length > 1 && "grid-cols-2")}>
+          <div
+            className={cn("grid gap-8", columns.length > 1 && "grid-cols-2")}
+          >
             {columns.map((col, ci) => (
-              <div key={ci}>
+              <div key={col.headingKey ?? ci}>
                 {col.headingKey && (
                   <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-ink-400">
                     {nav[col.headingKey as keyof NavDict] ?? col.headingKey}
@@ -86,13 +88,13 @@ function MegaMenuPanel({
                           onClick={onClose}
                           className={cn(
                             "group flex flex-col rounded-lg px-3 py-3 transition-colors",
-                            active ? "bg-brand-50" : "hover:bg-ink-50"
+                            active ? "bg-brand-50" : "hover:bg-ink-50",
                           )}
                         >
                           <span
                             className={cn(
                               "text-sm font-semibold",
-                              active ? "text-brand-700" : "text-ink-900"
+                              active ? "text-brand-700" : "text-ink-900",
                             )}
                           >
                             {t(nav, item.key)}
@@ -166,7 +168,9 @@ export function Header() {
   // Close on outside click / Escape
   useEffect(() => {
     if (!activeKey) return;
-    function onKey(e: KeyboardEvent) { if (e.key === "Escape") close(); }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") close();
+    }
     function onClick(e: MouseEvent) {
       const header = document.getElementById("site-header");
       if (header && !header.contains(e.target as Node)) close();
@@ -179,22 +183,21 @@ export function Header() {
     };
   }, [activeKey, close]);
 
-  const activeGroup = mainNav
-    .filter(isNavGroup)
-    .find((g) => g.key === activeKey) ?? null;
+  const activeGroup =
+    mainNav.filter(isNavGroup).find((g) => g.key === activeKey) ?? null;
 
   return (
     <header
       id="site-header"
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-white/10 bg-ink-950/95 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+        scrolled || pathname !== "/"
+          ? "border-b border-white/10 bg-ink-950/80 backdrop-blur-xl backdrop-saturate-150"
+          : "border-b border-transparent bg-transparent",
       )}
     >
       {/* Nav bar row */}
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6 sm:px-8">
+      <div className="mx-auto flex h-18 w-full max-w-7xl items-center justify-between px-6 sm:px-8">
         <Logo variant="white" />
 
         <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
@@ -214,14 +217,16 @@ export function Header() {
                   aria-haspopup="menu"
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium transition-colors",
-                    isActive ? "text-brand-400" : "text-white/70 hover:text-white"
+                    isActive
+                      ? "text-brand-400"
+                      : "text-white/70 hover:text-white",
                   )}
                 >
                   {t(nav, entry.key)}
                   <ChevronDown
                     className={cn(
                       "h-3.5 w-3.5 transition-transform duration-200",
-                      activeKey === entry.key && "rotate-180"
+                      activeKey === entry.key && "rotate-180",
                     )}
                   />
                 </button>
@@ -241,7 +246,12 @@ export function Header() {
         <div className="hidden items-center gap-3 md:flex">
           <CountrySelector />
           <CartButton />
-          <Button href={ctaNav.login.href} variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10">
+          <Button
+            href={ctaNav.login.href}
+            variant="ghost"
+            size="sm"
+            className="text-white/70 hover:text-white hover:bg-white/10"
+          >
             {actions.login}
           </Button>
           <Button href={ctaNav.freeTrial.href} variant="primary" size="sm">
