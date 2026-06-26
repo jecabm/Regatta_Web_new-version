@@ -5,7 +5,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { productsQuery } from "@/sanity/queries";
 import { Section } from "@/components/ui/section";
-import { AddToCartButton } from "@/components/marketing/add-to-cart-button";
+import { AddToCartButton } from "@/components/marketing/shop/add-to-cart-button";
 
 export const metadata: Metadata = {
   title: "Shop",

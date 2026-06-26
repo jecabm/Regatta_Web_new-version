@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
-import { CartDrawer } from "@/components/marketing/cart-drawer";
+import { CartDrawer } from "@/components/marketing/shop/cart-drawer";
 
 export function CartButton() {
   const { count } = useCart();

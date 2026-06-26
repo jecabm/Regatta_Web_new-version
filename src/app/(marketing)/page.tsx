@@ -1,4 +1,4 @@
-import { MercuryHero } from "@/components/marketing/mercury-hero";
+import { MercuryHero } from "@/components/marketing/hero/mercury-hero";
 import { TrustBar } from "@/components/marketing/sections/trust-bar";
 import { WhySection } from "@/components/marketing/sections/why-section";
 import { LiftingEquipmentSection } from "@/components/marketing/sections/lifting-equipment-section";

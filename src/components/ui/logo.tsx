@@ -32,7 +32,7 @@ export function Logo({
         width={132}
         height={76}
         priority
-        className={cn(showWordmark ? "h-10 w-auto" : "h-9 w-auto")}
+        className={cn(showWordmark ? "h-14 w-auto" : "h-14 w-auto")}
       />
     </Link>
   );

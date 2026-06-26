@@ -144,19 +144,11 @@ function MegaMenuPanel({
 /** Sticky marketing header with full-width mega menu for Features and Resources. */
 export function Header() {
   const [activeKey, setActiveKey] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const { content } = useCountry();
   const { nav, actions } = content.dictionary;
 
   const close = useCallback(() => setActiveKey(null), []);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Close when the route changes
   const [lastPathname, setLastPathname] = useState(pathname);
@@ -191,9 +183,7 @@ export function Header() {
       id="site-header"
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled || pathname !== "/"
-          ? "border-b border-white/10 bg-ink-950/80 backdrop-blur-xl backdrop-saturate-150"
-          : "border-b border-transparent bg-transparent",
+        "border-b border-white/10 bg-ink-950/80 backdrop-blur-xl backdrop-saturate-150",
       )}
     >
       {/* Nav bar row */}

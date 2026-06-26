@@ -1,49 +1,70 @@
 "use client";
 
-import { ShieldCheck, Star, Clock } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { useCountry } from "@/hooks/use-country";
 
-const icons = [ShieldCheck, Star, Clock];
+const carouselLogos = [
+  { src: "/adco.png",        alt: "Adco" },
+  { src: "/all-lifting.png", alt: "All Lifting" },
+  { src: "/lawrence.png",    alt: "Lawrence" },
+];
 
 export function TrustBar() {
   const { content } = useCountry();
   const { trustBar } = content.home;
 
+  // Two identical sets — translate -50% lands exactly back at the start
+  const logos = [...carouselLogos, ...carouselLogos];
+
   return (
-    <section style={{ backgroundColor: "#F08421" }} className="border-y border-transparent">
+    <section className="border-y border-transparent" style={{ backgroundColor: "#F4F6FA" }}>
+      <style>{`
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .logo-marquee { animation: marquee 10s linear infinite; }
+      `}</style>
       <Container size="wide" className="py-8">
         <div className="flex flex-col items-center gap-5 lg:flex-row lg:justify-between lg:gap-8">
-          {/* Stats row — always horizontal */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 lg:gap-14">
-            {trustBar.stats.map((stat, i) => {
-              const Icon = icons[i % icons.length];
-              return (
-                <div key={stat.label} className="flex items-center gap-3">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-black/10 text-white">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <p className="text-lg font-bold leading-none text-white">{stat.value}</p>
-                    <p className="mt-0.5 text-xs text-white/75">{stat.label}</p>
-                  </div>
+
+          {/* Logo carousel */}
+          <div
+            className="relative w-full overflow-hidden lg:flex-1"
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+            }}
+          >
+            <div className="logo-marquee flex w-max items-center gap-20">
+              {logos.map((logo, i) => (
+                <div key={i} className="flex shrink-0 items-center justify-center">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={120}
+                    height={48}
+                    className="h-10 w-auto object-contain opacity-90 grayscale brightness-50"
+                  />
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
 
-          {/* Used in row — always horizontal below stats */}
+          {/* Used in row */}
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="mr-1 text-xs font-medium text-white/75">{trustBar.usedIn}</span>
+            <span className="mr-1 text-xs font-medium text-ink-400">{trustBar.usedIn}</span>
             {trustBar.industries.map((name) => (
               <span
                 key={name}
-                className="rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs font-medium text-white"
+                className="rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-600"
               >
                 {name}
               </span>
             ))}
           </div>
+
         </div>
       </Container>
     </section>

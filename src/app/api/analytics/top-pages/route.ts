@@ -17,7 +17,7 @@ export async function GET() {
     const client = new BetaAnalyticsDataClient({credentials})
 
     const [response] = await client.runReport({
-      property: propertyId,
+      property: `properties/${propertyId}`,
       dimensions: [{name: 'pagePath'}],
       metrics: [{name: 'screenPageViews'}],
       dateRanges: [{startDate: '7daysAgo', endDate: 'today'}],
