@@ -251,9 +251,8 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Mobile-only: country selector + hamburger grouped on the right */}
+        {/* Mobile-only: hamburger */}
         <div className="flex items-center gap-1 md:hidden">
-          <CountrySelector />
           <MobileNav />
         </div>
       </div>

@@ -140,7 +140,8 @@ export const coContent: CountryContent = {
         id: "standard",
         name: "Estándar",
         description: "Para inspectores individuales que comienzan.",
-        amount: 129000,
+        monthlyAmount: 129000,
+        annualAmount: 103000,
         features: [
           "1 usuario",
           "Registro de activos",
@@ -153,7 +154,8 @@ export const coContent: CountryContent = {
         id: "pro",
         name: "Pro",
         description: "Para equipos de inspección en crecimiento.",
-        amount: 529000,
+        monthlyAmount: 529000,
+        annualAmount: 423000,
         features: [
           "6 usuarios",
           "Todo lo de Estándar",
@@ -168,7 +170,8 @@ export const coContent: CountryContent = {
         id: "enterprise",
         name: "Empresarial",
         description: "Para despliegues en toda la organización.",
-        amount: null,
+        monthlyAmount: null,
+        annualAmount: null,
         features: [
           "Usuarios ilimitados",
           "Todo lo de Pro",
