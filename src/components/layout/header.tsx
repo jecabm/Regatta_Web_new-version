@@ -13,7 +13,7 @@ import { CartButton } from "@/components/layout/cart-button";
 import { mainNav, ctaNav, isNavGroup, type NavGroup } from "@/config/site";
 import { useCountry } from "@/hooks/use-country";
 import type { Dictionary } from "@/content/countries/types";
-import { cn } from "@/lib/utils";
+import { cn, isPathActive, isSectionActive } from "@/lib/utils";
 
 type NavDict = Dictionary["nav"];
 
@@ -27,9 +27,10 @@ function t(nav: NavDict, key: string): string {
     features: "features",
     resources: "resources",
     "asset-management": "assetManagement",
-    calendar: "calendar",
+    "inspection-management": "inspectionManagement",
     "multi-locations": "multiLocations",
-    "prestart-checklist": "prestartChecklist",
+    reports: "reports",
+    "mobile-app": "mobileApp",
     blog: "blog",
     learning: "learning",
   };
@@ -60,15 +61,16 @@ function MegaMenuPanel({
           className={cn(
             "grid gap-6",
             hasFeatured
-              ? columns.length === 1
-                ? "grid-cols-1 lg:grid-cols-[1fr_280px]"
-                : "grid-cols-1 lg:grid-cols-[repeat(2,1fr)_280px]"
+              ? "grid-cols-1 lg:grid-cols-[1fr_280px]"
               : `grid-cols-1 md:grid-cols-${columns.length}`,
           )}
         >
           {/* Content columns */}
           <div
-            className={cn("grid gap-8", columns.length > 1 && "grid-cols-2")}
+            className={cn(
+              "grid gap-8",
+              columns.length >= 3 ? "grid-cols-3" : columns.length > 1 && "grid-cols-2",
+            )}
           >
             {columns.map((col, ci) => (
               <div key={col.headingKey ?? ci}>
@@ -79,7 +81,7 @@ function MegaMenuPanel({
                 )}
                 <ul className="space-y-1">
                   {col.items.map((item) => {
-                    const active = pathname.startsWith(item.href);
+                    const active = isPathActive(pathname, item.href);
                     return (
                       <li key={item.key}>
                         <Link
@@ -195,7 +197,7 @@ export function Header() {
             if (isNavGroup(entry)) {
               const isActive =
                 activeKey === entry.key ||
-                entry.children.some((c) => pathname.startsWith(c.href));
+                entry.children.some((c) => isSectionActive(pathname, c.href));
               return (
                 <button
                   key={entry.key}

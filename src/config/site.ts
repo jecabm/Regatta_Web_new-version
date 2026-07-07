@@ -55,10 +55,11 @@ export const mainNav: NavEntry[] = [
     key: "features",
     label: "Features",
     children: [
-      { key: "asset-management", label: "Asset Management", href: "/features/asset-management" },
-      { key: "calendar", label: "Calendar", href: "/features/calendar" },
-      { key: "multi-locations", label: "Multi Locations", href: "/features/multi-locations" },
-      { key: "prestart-checklist", label: "Prestart Checklist", href: "/features/prestart-checklist" },
+      { key: "asset-management", label: "Asset Management", href: "/features#asset-management" },
+      { key: "inspection-management", label: "Inspection Management", href: "/features#inspection-management" },
+      { key: "multi-locations", label: "Multi Locations", href: "/features#multi-locations" },
+      { key: "reports", label: "Reports", href: "/features#reports" },
+      { key: "mobile-app", label: "Offline Inspections", href: "/features#mobile-app" },
     ],
     columns: [
       {
@@ -67,13 +68,13 @@ export const mainNav: NavEntry[] = [
           {
             key: "asset-management",
             label: "Asset Management",
-            href: "/features/asset-management",
+            href: "/features#asset-management",
             description: "Centralised register for every piece of equipment you own or operate.",
           },
           {
             key: "multi-locations",
             label: "Multi Locations",
-            href: "/features/multi-locations",
+            href: "/features#multi-locations",
             description: "Manage compliance across multiple sites from a single dashboard.",
           },
         ],
@@ -82,16 +83,27 @@ export const mainNav: NavEntry[] = [
         headingKey: "stayCompliant",
         items: [
           {
-            key: "calendar",
-            label: "Calendar",
-            href: "/features/calendar",
-            description: "Never miss an inspection or certification deadline.",
+            key: "inspection-management",
+            label: "Inspection Management",
+            href: "/features#inspection-management",
+            description: "Digital checklists tailored to equipment type, from pre-start to sign-off.",
           },
           {
-            key: "prestart-checklist",
-            label: "Prestart Checklist",
-            href: "/features/prestart-checklist",
-            description: "Digital prestart checks on any device — faults flagged in real time.",
+            key: "reports",
+            label: "Reports",
+            href: "/features#reports",
+            description: "Real-time compliance dashboards and audit-ready exports.",
+          },
+        ],
+      },
+      {
+        headingKey: "fieldReady",
+        items: [
+          {
+            key: "mobile-app",
+            label: "Offline Inspections",
+            href: "/features#mobile-app",
+            description: "Complete inspections from the field, online or offline.",
           },
         ],
       },
@@ -157,10 +169,11 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Features",
     items: [
-      { key: "asset-management", label: "Asset Management", href: "/features/asset-management" },
-      { key: "calendar", label: "Calendar", href: "/features/calendar" },
-      { key: "multi-locations", label: "Multi Locations", href: "/features/multi-locations" },
-      { key: "prestart-checklist", label: "Prestart Checklist", href: "/features/prestart-checklist" },
+      { key: "asset-management", label: "Asset Management", href: "/features#asset-management" },
+      { key: "inspection-management", label: "Inspection Management", href: "/features#inspection-management" },
+      { key: "multi-locations", label: "Multi Locations", href: "/features#multi-locations" },
+      { key: "reports", label: "Reports", href: "/features#reports" },
+      { key: "mobile-app", label: "Offline Inspections", href: "/features#mobile-app" },
     ],
   },
   {

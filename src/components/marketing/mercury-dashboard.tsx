@@ -22,7 +22,14 @@ import {
 
 // ─── Sidebar data ────────────────────────────────────────────────────────────
 
-const sidebarNav = [
+type SidebarItem = {
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  active?: boolean;
+  chevron?: boolean;
+};
+
+const sidebarNav: { group: string; items: SidebarItem[] }[] = [
   {
     group: "DASHBOARD",
     items: [
@@ -219,7 +226,7 @@ export function MercuryDashboard() {
               <p className="mb-1 px-2 text-[9px] font-bold tracking-widest text-ink-400">
                 {group}
               </p>
-              {items.map(({ icon: Icon, label, active, chevron }) => (
+              {items.map(({ icon: Icon, label, active = false, chevron = false }) => (
                 <button
                   key={label}
                   className="flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-left transition-colors"

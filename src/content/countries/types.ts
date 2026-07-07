@@ -43,15 +43,17 @@ export interface Dictionary {
     resources: string;
     // Feature sub-items
     assetManagement: string;
-    calendar: string;
+    inspectionManagement: string;
     multiLocations: string;
-    prestartChecklist: string;
+    reports: string;
+    mobileApp: string;
     // Resource sub-items
     blog: string;
     learning: string;
     // Mega menu column headings
     manageAssets: string;
     stayCompliant: string;
+    fieldReady: string;
     learn: string;
   };
   actions: {

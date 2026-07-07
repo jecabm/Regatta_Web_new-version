@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn, isPathActive } from "@/lib/utils";
 
 /** Desktop nav link with active-route awareness. */
 export function NavLink({
@@ -15,7 +15,7 @@ export function NavLink({
   className?: string;
 }) {
   const pathname = usePathname();
-  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = isPathActive(pathname, href);
 
   return (
     <Link

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn, isPathActive, isSectionActive } from "@/lib/utils";
 import { mainNav, ctaNav, isNavGroup } from "@/config/site";
 import { useCountry } from "@/hooks/use-country";
 import type { Dictionary } from "@/content/countries/types";
@@ -21,9 +21,10 @@ function t(nav: NavDict, key: string): string {
     features: "features",
     resources: "resources",
     "asset-management": "assetManagement",
-    calendar: "calendar",
+    "inspection-management": "inspectionManagement",
     "multi-locations": "multiLocations",
-    "prestart-checklist": "prestartChecklist",
+    reports: "reports",
+    "mobile-app": "mobileApp",
     blog: "blog",
     learning: "learning",
   };
@@ -70,7 +71,7 @@ export function MobileNav() {
               if (isNavGroup(entry)) {
                 const isExpanded = expandedGroup === entry.key;
                 const hasActiveChild = entry.children.some((c) =>
-                  pathname.startsWith(c.href)
+                  isSectionActive(pathname, c.href)
                 );
                 return (
                   <div key={entry.key}>
@@ -98,7 +99,7 @@ export function MobileNav() {
                     {isExpanded && (
                       <div className="pl-2 pb-1">
                         {entry.children.map((item) => {
-                          const isActive = pathname.startsWith(item.href);
+                          const isActive = isPathActive(pathname, item.href);
                           return (
                             <Link
                               key={item.key}
@@ -121,10 +122,7 @@ export function MobileNav() {
                   </div>
                 );
               }
-              const isActive =
-                entry.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(entry.href);
+              const isActive = isPathActive(pathname, entry.href);
               return (
                 <Link
                   key={entry.key}
