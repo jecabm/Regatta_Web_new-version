@@ -46,6 +46,13 @@ export const coContent: CountryContent = {
         "Importa tus registros actuales",
         "Cancela cuando quieras",
       ],
+      mercuryEyebrow: "Plataforma de Gestión de Activos Industriales",
+      mercuryTitleLine1: "Controla tus activos.",
+      mercuryTitleHighlight: "Siempre",
+      mercuryTitleLine2: "bajo control.",
+      mercurySubtitle:
+        "Cumplimiento en tiempo real, seguimiento de inspecciones y registros de activos diseñados para minería, construcción e industria pesada.",
+      scrollHint: "Desplázate",
     },
     pricing: {
       eyebrow: "Precios",

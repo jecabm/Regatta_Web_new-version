@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
+import { useCountry } from "@/hooks/use-country";
 
 interface LegalSection {
   heading: string;
@@ -18,10 +19,16 @@ interface LegalPageProps {
   contact: React.ReactNode;
 }
 
-const legalNav = [
+const legalNavEn = [
   { label: "Terms of Service", href: "/terms-of-service" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Cookie Policy", href: "/cookies-privacy" },
+];
+
+const legalNavEs = [
+  { label: "Términos de Servicio", href: "/terms-of-service" },
+  { label: "Política de Privacidad", href: "/privacy-policy" },
+  { label: "Política de Cookies", href: "/cookies-privacy" },
 ];
 
 function slugify(text: string) {
@@ -34,10 +41,14 @@ function slugify(text: string) {
 
 export function LegalPage({ title, lastRevised, intro, sections, contact }: LegalPageProps) {
   const pathname = usePathname();
+  const { code } = useCountry();
+  const isEs = code === "co";
+  const legalNav = isEs ? legalNavEs : legalNavEn;
+  const contactHeading = isEs ? "Contáctanos" : "Contact Us";
 
   const allSections = [
     ...sections,
-    { heading: "Contact Us", content: contact },
+    { heading: contactHeading, content: contact },
   ];
 
   const ids = allSections.map((s) => slugify(s.heading));
@@ -89,7 +100,7 @@ export function LegalPage({ title, lastRevised, intro, sections, contact }: Lega
         <aside className="hidden lg:block">
           <div className="sticky top-24">
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-ink-400">
-              Legal
+              {isEs ? "Legal" : "Legal"}
             </p>
             <nav>
               <ul className="space-y-1">
@@ -123,7 +134,7 @@ export function LegalPage({ title, lastRevised, intro, sections, contact }: Lega
               Legal
             </p>
             <h1 className="text-4xl font-bold text-ink-900 mb-4">{title}</h1>
-            <p className="text-sm text-ink-400">Last Revised: {lastRevised}</p>
+            <p className="text-sm text-ink-400">{isEs ? "Última revisión" : "Last Revised"}: {lastRevised}</p>
             {intro && (
               <div className="mt-6 text-ink-600 leading-relaxed">{intro}</div>
             )}
@@ -138,7 +149,7 @@ export function LegalPage({ title, lastRevised, intro, sections, contact }: Lega
             ))}
 
             <section id={ids[ids.length - 1]} className="scroll-mt-28 border-t border-ink-100 pt-8">
-              <h2 className="text-xl font-semibold text-ink-900 mb-4">Contact Us</h2>
+              <h2 className="text-xl font-semibold text-ink-900 mb-4">{contactHeading}</h2>
               <div className="text-ink-600 leading-relaxed">{contact}</div>
             </section>
           </div>
@@ -148,7 +159,7 @@ export function LegalPage({ title, lastRevised, intro, sections, contact }: Lega
         <aside className="hidden lg:block">
           <div className="sticky top-24">
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-ink-400">
-              On this page
+              {isEs ? "En esta página" : "On this page"}
             </p>
             <nav>
               <ul className="space-y-1">

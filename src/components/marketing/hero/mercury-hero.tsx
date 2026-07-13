@@ -2,8 +2,11 @@
 
 import { useRef, useEffect } from "react";
 import { MercuryDashboard } from "@/components/marketing/mercury-dashboard";
+import { useCountry } from "@/hooks/use-country";
 
 export function MercuryHero() {
+  const { content } = useCountry();
+  const { hero, actions } = content.dictionary;
   const zoneRef      = useRef<HTMLDivElement>(null);
   const landscapeRef = useRef<HTMLDivElement>(null);
   const overlayRef   = useRef<HTMLDivElement>(null);
@@ -142,7 +145,7 @@ export function MercuryHero() {
             marginBottom: 28,
             textTransform: "uppercase",
           }}>
-            Industrial Asset Management Platform
+            {hero.mercuryEyebrow}
           </p>
 
           <h1 style={{
@@ -153,8 +156,8 @@ export function MercuryHero() {
             color: "#ffffff",
             marginBottom: 28,
           }}>
-            Command your assets.<br />
-            <span style={{ color: "var(--color-brand-500, #f28500)" }}>Always</span> in control.
+            {hero.mercuryTitleLine1}<br />
+            <span style={{ color: "var(--color-brand-500, #f28500)" }}>{hero.mercuryTitleHighlight}</span> {hero.mercuryTitleLine2}
           </h1>
 
           <p style={{
@@ -166,8 +169,7 @@ export function MercuryHero() {
             marginBottom: 40,
             letterSpacing: "-0.01em",
           }}>
-            Real-time compliance, inspection tracking, and asset registers built
-            for mining, construction, and heavy industry.
+            {hero.mercurySubtitle}
           </p>
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
@@ -181,7 +183,7 @@ export function MercuryHero() {
               textDecoration: "none",
               transition: "opacity 0.18s",
             }}>
-              Start free trial
+              {actions.startFreeTrial}
             </a>
             <a href="/pricing" style={{
               display: "inline-flex", alignItems: "center", gap: 8,
@@ -194,7 +196,7 @@ export function MercuryHero() {
               textDecoration: "none",
               transition: "background 0.18s",
             }}>
-              View pricing
+              {actions.viewPricing}
             </a>
           </div>
         </div>
@@ -213,7 +215,7 @@ export function MercuryHero() {
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} width={14} height={14}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
-          Scroll
+          {hero.scrollHint}
         </div>
 
         {/* â”€â”€ Dashboard reveal â”€â”€ */}

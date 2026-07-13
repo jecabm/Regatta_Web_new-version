@@ -72,6 +72,13 @@ export interface Dictionary {
     titleTrail: string;
     subtitle: string;
     trustSignals: string[];
+    /** Cinematic scroll-driven homepage hero (mercury-hero.tsx). */
+    mercuryEyebrow: string;
+    mercuryTitleLine1: string;
+    mercuryTitleHighlight: string;
+    mercuryTitleLine2: string;
+    mercurySubtitle: string;
+    scrollHint: string;
   };
   pricing: {
     eyebrow: string;

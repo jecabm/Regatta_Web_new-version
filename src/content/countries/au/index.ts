@@ -46,6 +46,13 @@ export const auContent: CountryContent = {
         "Import existing registers",
         "Cancel anytime",
       ],
+      mercuryEyebrow: "Industrial Asset Management Platform",
+      mercuryTitleLine1: "Command your assets.",
+      mercuryTitleHighlight: "Always",
+      mercuryTitleLine2: "in control.",
+      mercurySubtitle:
+        "Real-time compliance, inspection tracking, and asset registers built for mining, construction, and heavy industry.",
+      scrollHint: "Scroll",
     },
     pricing: {
       eyebrow: "Pricing",
