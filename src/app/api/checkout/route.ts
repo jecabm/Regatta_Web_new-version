@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-05-27.dahlia",
-});
-
 type LineItem = {
   stripePriceId?: string;
   name: string;
@@ -15,6 +11,13 @@ type LineItem = {
 
 export async function POST(req: NextRequest) {
   try {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json({ error: "Stripe is not configured" }, { status: 500 });
+    }
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2026-05-27.dahlia",
+    });
+
     const { items, successUrl, cancelUrl }: { items: LineItem[]; successUrl: string; cancelUrl: string } =
       await req.json();
 

@@ -21,14 +21,34 @@ export function ContactContent() {
   const c = content.contactPage;
   const details = content.contact;
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true); // frontend-only stub
+    setLoading(true);
+    setError(null);
+    const data = new FormData(e.currentTarget);
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: data.get("name"),
+        company: data.get("company"),
+        email: data.get("email"),
+        message: data.get("message"),
+      }),
+    });
+    setLoading(false);
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      setError("Something went wrong. Please try again or email us directly.");
+    }
   }
 
   return (
-    <section className="py-16 sm:py-20">
+    <section className="pt-28 pb-16 sm:pt-32 sm:pb-20">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-brand-600">
@@ -58,14 +78,15 @@ export function ContactContent() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label={c.form.name} required>
-                    <Input required autoComplete="name" />
+                    <Input name="name" required autoComplete="name" />
                   </Field>
                   <Field label={c.form.company}>
-                    <Input autoComplete="organization" />
+                    <Input name="company" autoComplete="organization" />
                   </Field>
                 </div>
                 <Field label={c.form.email} required>
                   <Input
+                    name="email"
                     type="email"
                     required
                     autoComplete="email"
@@ -73,17 +94,20 @@ export function ContactContent() {
                   />
                 </Field>
                 <Field label={c.form.message} required>
-                  <Textarea required rows={5} />
+                  <Textarea name="message" required rows={5} />
                 </Field>
-                <Button type="submit" size="lg" fullWidth>
-                  {c.form.submit}
+                {error && (
+                  <p className="text-sm text-red-600">{error}</p>
+                )}
+                <Button type="submit" size="lg" fullWidth disabled={loading}>
+                  {loading ? "Sending…" : c.form.submit}
                 </Button>
               </form>
             )}
           </div>
 
           {/* Details */}
-          <div className="space-y-8">
+          <div className="space-y-8 px-6">
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-400">
                 {c.detailsTitle}

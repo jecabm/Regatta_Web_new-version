@@ -5,8 +5,10 @@ export interface PricingTier {
   id: string;
   name: string;
   description: string;
-  /** Amount in the country's currency. `null` = custom / contact sales. */
-  amount: number | null;
+  /** Monthly amount. `null` = custom / contact sales. */
+  monthlyAmount: number | null;
+  /** Annual amount (billed annually). `null` = custom / contact sales. */
+  annualAmount: number | null;
   features: string[];
   cta: string;
   popular?: boolean;

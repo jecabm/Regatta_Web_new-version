@@ -4,16 +4,23 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { useCountry } from "@/hooks/use-country";
 
-const carouselLogos = [
-  { src: "/adco.png",        alt: "Adco" },
-  { src: "/all-lifting.png", alt: "All Lifting" },
-  { src: "/lawrence.png",    alt: "Lawrence" },
-];
+const carouselLogosByCountry = {
+  au: [
+    { src: "/clients/Australia/Crane-Reliability-logo.png",           alt: "Crane Reliability", className: "h-16" },
+    { src: "/clients/Australia/Technical-Inspection-services-logo.png", alt: "Technical Inspection Services", className: "h-16" },
+    { src: "/clients/Australia/all-lifting.png",                      alt: "All Lifting", className: "h-10" },
+  ],
+  co: [
+    { src: "/clients/Colombia/Jiw-Soluciones-Logo.png",   alt: "Jiw Soluciones", className: "h-16" },
+    { src: "/clients/Colombia/Servi-Dotaciones-logo.png", alt: "Servi Dotaciones", className: "h-16" },
+  ],
+};
 
 export function TrustBar() {
-  const { content } = useCountry();
+  const { content, code } = useCountry();
   const { trustBar } = content.home;
 
+  const carouselLogos = carouselLogosByCountry[code] ?? carouselLogosByCountry.au;
   // Two identical sets — translate -50% lands exactly back at the start
   const logos = [...carouselLogos, ...carouselLogos];
 
@@ -45,7 +52,7 @@ export function TrustBar() {
                     alt={logo.alt}
                     width={120}
                     height={48}
-                    className="h-10 w-auto object-contain opacity-90 grayscale brightness-50"
+                    className={`w-auto object-contain opacity-90 grayscale brightness-50 ${logo.className}`}
                   />
                 </div>
               ))}

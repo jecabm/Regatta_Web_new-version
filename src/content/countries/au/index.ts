@@ -144,10 +144,11 @@ export const auContent: CountryContent = {
   pricing: {
     tiers: [
       {
-        id: "standard",
-        name: "Standard",
+        id: "basic",
+        name: "Basic",
         description: "For individual inspectors getting started.",
-        amount: 49,
+        monthlyAmount: 49,
+        annualAmount: 39,
         features: ["1 user", "Asset register", "Inspection scheduling", "CSV import"],
         cta: "Start Free Trial",
       },
@@ -155,10 +156,11 @@ export const auContent: CountryContent = {
         id: "pro",
         name: "Pro",
         description: "For growing inspection teams.",
-        amount: 199,
+        monthlyAmount: 199,
+        annualAmount: 159,
         features: [
           "6 users",
-          "Everything in Standard",
+          "Everything in Basic",
           "Custom forms",
           "Automated compliance alerts",
           "Priority support",
@@ -170,7 +172,8 @@ export const auContent: CountryContent = {
         id: "enterprise",
         name: "Enterprise",
         description: "For organisation-wide deployments.",
-        amount: null,
+        monthlyAmount: null,
+        annualAmount: null,
         features: [
           "Unlimited users",
           "Everything in Pro",
@@ -184,9 +187,9 @@ export const auContent: CountryContent = {
   },
   contact: {
     region: "Australia",
-    phone: "+61 2 8000 0000",
-    email: "support@regattaregisters.com",
-    address: "Sydney, NSW, Australia",
+    phone: "+61 0460 893 234",
+    email: "info@regattaregisters.com",
+    address: "Brisbane, QLD, Australia",
   },
   home: {
     why: {
@@ -276,25 +279,31 @@ export const auContent: CountryContent = {
   },
   about: {
     eyebrow: "About Us",
-    title: "Built for the realities of industrial compliance",
-    intro:
-      "Regatta Registers helps asset-heavy operations replace paper and spreadsheets with a single, audit-ready system for assets, inspections, and compliance.",
+    title: "We help businesses stay compliant, organised, and in control. Anytime, anywhere!",
+    intro: "",
     mission: {
-      title: "Our mission",
-      body: "To make compliance effortless for the industries that keep the world running — so teams spend less time on admin and more time on safe, productive work.",
+      title: "Our Focus",
+      body: "At Regatta Registers, we build and support solutions that strengthen our core platform and deliver real value to our users. We work closely with clients in compliance-driven industries to improve safety, visibility, and operational performance.\n\nEvery feature we develop is designed to enhance how businesses manage assets, inspections, and compliance. By staying focused on our strengths, we ensure the platform continues to evolve, delivering reliable, scalable solutions that grow with our customers.",
     },
-    stats: [
-      { value: "10k+", label: "Assets tracked" },
-      { value: "98%", label: "On-time inspections" },
-      { value: "4", label: "Industries served" },
-      { value: "24/7", label: "Secure access" },
-    ],
+    stats: [],
     values: {
       title: "What we stand for",
       items: [
-        { title: "Compliance first", description: "Every feature is designed to keep you audit-ready." },
-        { title: "Built for the field", description: "Fast, simple, and reliable on any device, anywhere." },
-        { title: "Secure by design", description: "Your records are protected with enterprise-grade security." },
+        {
+          title: "Security & Reliability",
+          description:
+            "R&R is delivered as a secure, cloud-based SaaS platform, built for reliability and data integrity. Client data is protected through secure infrastructure, regular backups, and continuous system monitoring. While configurations are tailored to each client, the core platform remains centrally managed and maintained by RR, ensuring consistency, scalability, and ongoing improvements.",
+        },
+        {
+          title: "Our Vision",
+          description:
+            "To simplify and digitise asset, inspection, and compliance processes for industries where safety, visibility, and performance are critical.",
+        },
+        {
+          title: "Our Mission",
+          description:
+            "To empower industrial businesses with digital tools that simplify asset, inspection, and compliance management, improving safety, efficiency, and decision-making across every operation.",
+        },
       ],
     },
     cta: {
