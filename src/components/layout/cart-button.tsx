@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
-import { CartDrawer } from "@/components/marketing/cart-drawer";
+import { CartDrawer } from "@/components/marketing/shop/cart-drawer";
 
 export function CartButton() {
   const { count } = useCart();
@@ -13,7 +13,7 @@ export function CartButton() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="relative grid h-9 w-9 place-items-center rounded-md text-ink-600 hover:bg-ink-100 hover:text-ink-900 transition-colors"
+        className="relative grid h-9 w-9 place-items-center rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors"
         aria-label={`Open cart (${count} items)`}
       >
         <ShoppingCart className="h-5 w-5" />

@@ -32,12 +32,20 @@ export function Footer() {
       title: f.groups.account,
       items: [{ label: f.links.login, href: "/login" }],
     },
+    {
+      title: f.groups.legal,
+      items: [
+        { label: f.links.termsOfService, href: "/terms-of-service" },
+        { label: f.links.privacyPolicy, href: "/privacy-policy" },
+        { label: f.links.cookiePolicy, href: "/cookies-privacy" },
+      ],
+    },
   ];
 
   return (
     <footer className="mt-auto border-t border-ink-200 bg-ink-50">
       <Container size="wide" className="py-14">
-        <div className="grid gap-6 sm:gap-8 md:gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)] text-center sm:text-left">
+        <div className="grid gap-6 sm:gap-8 md:gap-10 md:grid-cols-[1.5fr_repeat(4,1fr)] text-center sm:text-left">
           <div className="flex flex-col items-center sm:items-start max-w-xs mx-auto sm:mx-0">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-ink-500">

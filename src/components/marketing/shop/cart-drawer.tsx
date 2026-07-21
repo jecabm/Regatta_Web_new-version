@@ -2,21 +2,21 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { X, ShoppingCart, Plus, Minus, Trash2, Loader2 } from "lucide-react";
+import { X, ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
+import { useCountry } from "@/hooks/use-country";
+import { formatCurrency } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-
-function formatPrice(dollars: number) {
-  return new Intl.NumberFormat("en-AU", { style: "currency", currency: "AUD" }).format(dollars);
-}
 
 type Props = { open: boolean; onClose: () => void };
 
 export function CartDrawer({ open, onClose }: Props) {
   const { items, total, remove, increment, decrement, clear } = useCart();
+  const { content } = useCountry();
   const [loading, setLoading] = useState(false);
+  const fmt = (amount: number) => formatCurrency(amount, content.locale, content.currency);
   const ref = useRef<HTMLDivElement>(null);
 
   // Close on outside click
@@ -76,7 +76,7 @@ export function CartDrawer({ open, onClose }: Props) {
       <div
         ref={ref}
         className={cn(
-          "fixed right-0 top-0 z-50 flex h-full w-full max-w-sm flex-col bg-white shadow-popover transition-transform duration-300",
+          "fixed right-0 top-0 z-50 flex h-screen w-full max-w-sm flex-col bg-white shadow-popover transition-transform duration-300",
           open ? "translate-x-0 visible" : "translate-x-full invisible"
         )}
       >
@@ -121,7 +121,7 @@ export function CartDrawer({ open, onClose }: Props) {
                   )}
                   <div className="flex flex-1 flex-col gap-1">
                     <p className="text-sm font-semibold leading-snug text-ink-900">{item.name}</p>
-                    <p className="text-sm text-brand-600 font-medium">{formatPrice(item.price)}</p>
+                    <p className="text-sm text-brand-600 font-medium">{fmt(item.price)}</p>
                     <div className="mt-1 flex items-center gap-2">
                       <button
                         onClick={() => decrement(item.id)}
@@ -160,7 +160,7 @@ export function CartDrawer({ open, onClose }: Props) {
           <div className="border-t border-ink-200 px-5 py-5 space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-sm text-ink-500">Subtotal</span>
-              <span className="text-base font-bold text-ink-900">{formatPrice(total)}</span>
+              <span className="text-base font-bold text-ink-900">{fmt(total)}</span>
             </div>
             <p className="text-xs text-ink-400">Shipping calculated at checkout. AU & NZ delivery.</p>
             <Button fullWidth loading={loading} onClick={handleCheckout}>

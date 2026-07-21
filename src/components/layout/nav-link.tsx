@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn, isPathActive } from "@/lib/utils";
 
 /** Desktop nav link with active-route awareness. */
 export function NavLink({
@@ -15,7 +15,7 @@ export function NavLink({
   className?: string;
 }) {
   const pathname = usePathname();
-  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = isPathActive(pathname, href);
 
   return (
     <Link
@@ -24,12 +24,12 @@ export function NavLink({
       className={cn(
         "relative text-sm font-medium transition-colors",
         isActive ? "text-ink-900" : "text-ink-600 hover:text-ink-900",
-        className
+        className,
       )}
     >
       {label}
       {isActive && (
-        <span className="absolute -bottom-[21px] left-0 hidden h-0.5 w-full bg-brand-500 md:block" />
+        <span className="absolute -bottom-6.5 left-0 hidden h-0.5 w-full bg-brand-500 md:block" />
       )}
     </Link>
   );

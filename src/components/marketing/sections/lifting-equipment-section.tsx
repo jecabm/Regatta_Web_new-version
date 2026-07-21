@@ -67,7 +67,7 @@ export function LiftingEquipmentSection() {
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
-            href="/features/asset-management"
+            href="/features#asset-management"
             className="inline-flex items-center gap-2 text-sm font-medium text-ink-300 transition-colors hover:text-white"
           >
             {liftingEquipment.ctaSecondary}

@@ -10,11 +10,15 @@ export function Logo({
   className,
   href = "/",
   showWordmark = true,
+  variant = "default",
 }: {
   className?: string;
   href?: string;
   showWordmark?: boolean;
+  variant?: "default" | "white";
 }) {
+  const src = variant === "white" ? "/RR-logo-white.png" : "/RR-logo.svg";
+
   return (
     <Link
       href={href}
@@ -22,13 +26,13 @@ export function Logo({
       className={cn("inline-flex items-center", className)}
     >
       <Image
-        src="/RR-logo.svg"
+        src={src}
         alt=""
         aria-hidden
         width={132}
         height={76}
         priority
-        className={cn(showWordmark ? "h-10 w-auto" : "h-9 w-auto")}
+        className={cn(showWordmark ? "h-10 w-auto md:h-14" : "h-10 w-auto md:h-14")}
       />
     </Link>
   );

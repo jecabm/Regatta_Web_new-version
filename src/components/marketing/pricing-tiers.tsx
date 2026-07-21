@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Check, Minus, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -131,6 +131,7 @@ export function PricingTiers() {
   const { content } = useCountry();
   const { pricing, actions } = content.dictionary;
   const tiers = content.pricing.tiers;
+  const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
 
   return (
     <>
@@ -149,8 +150,41 @@ export function PricingTiers() {
             </p>
           </div>
 
+          {/* Billing toggle */}
+          <div className="mt-8 flex items-center justify-center gap-1 rounded-full bg-ink-100 p-1 w-fit mx-auto">
+            <button
+              type="button"
+              onClick={() => setBilling("monthly")}
+              className={cn(
+                "rounded-full px-5 py-2 text-sm font-medium transition-colors",
+                billing === "monthly"
+                  ? "bg-white text-ink-900 shadow-sm"
+                  : "text-ink-500 hover:text-ink-700"
+              )}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setBilling("annual")}
+              className={cn(
+                "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors",
+                billing === "annual"
+                  ? "bg-white text-ink-900 shadow-sm"
+                  : "text-ink-500 hover:text-ink-700"
+              )}
+            >
+              Annual
+              <span className="rounded-full bg-success/15 px-2 py-0.5 text-xs font-semibold text-success">
+                Save 20%
+              </span>
+            </button>
+          </div>
+
           <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-3">
-            {tiers.map((tier) => (
+            {tiers.map((tier) => {
+              const amount = billing === "annual" ? tier.annualAmount : tier.monthlyAmount;
+              return (
               <Card
                 key={tier.id}
                 className={cn(
@@ -165,17 +199,20 @@ export function PricingTiers() {
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{tier.description}</p>
 
                 <div className="mt-5">
-                  {tier.amount === null ? (
+                  {amount === null ? (
                     <span className="text-3xl font-bold tracking-tight text-ink-900">
                       {pricing.custom}
                     </span>
                   ) : (
                     <>
                       <span className="text-4xl font-bold tracking-tight text-ink-900">
-                        {formatCurrency(tier.amount, content.locale, content.currency)}
+                        {formatCurrency(amount, content.locale, content.currency)}
                       </span>
                       <span className="text-base font-normal text-ink-500">{pricing.perMonth}</span>
                     </>
+                  )}
+                  {billing === "annual" && amount !== null && (
+                    <p className="mt-1 text-xs text-ink-400">Billed annually</p>
                   )}
                 </div>
 
@@ -190,7 +227,7 @@ export function PricingTiers() {
 
                 <div className="mt-auto pt-8">
                   <Button
-                    href={tier.amount === null ? "/contact" : "/free-trial"}
+                    href={tier.monthlyAmount === null ? "/contact" : "/free-trial"}
                     variant={tier.popular ? "primary" : "outline"}
                     fullWidth
                   >
@@ -198,7 +235,8 @@ export function PricingTiers() {
                   </Button>
                 </div>
               </Card>
-            ))}
+              );
+            })}
           </div>
 
           <p className="mt-8 text-center text-sm text-ink-400">{pricing.note}</p>
@@ -215,35 +253,48 @@ export function PricingTiers() {
             <p className="mt-3 text-ink-500">{pricing.compareSubtitle}</p>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-ink-200 bg-white">
-            <table className="w-full min-w-[640px] text-sm">
+          <div className="rounded-xl border border-ink-200 bg-white">
+            <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-ink-200">
-                  <th className="px-4 py-4 text-left font-semibold text-ink-900">{pricing.featureColumn}</th>
+                  <th className="sticky top-18 z-10 bg-white px-4 py-4 text-left font-semibold text-ink-900 shadow-[inset_0_-1px_0_0] shadow-ink-200">
+                    {pricing.featureColumn}
+                  </th>
                   {tiers.map((tier) => (
                     <th
                       key={tier.id}
                       className={cn(
-                        "px-4 py-4 text-center font-semibold",
+                        "sticky top-18 z-10 px-4 py-4 text-center font-semibold shadow-[inset_0_-1px_0_0] shadow-ink-200",
                         tier.popular
                           ? "bg-brand-50 text-brand-700"
-                          : "text-ink-900"
+                          : "bg-white text-ink-900"
                       )}
                     >
-                      {tier.name}
-                      {tier.popular && (
-                        <span className="ml-2 rounded-full bg-brand-100 px-2 py-0.5 text-xs text-brand-700">
-                          Popular
+                      <div className="flex flex-col items-center gap-2">
+                        <span>
+                          {tier.name}
+                          {tier.popular && (
+                            <span className="ml-2 rounded-full bg-brand-100 px-2 py-0.5 text-xs text-brand-700">
+                              Popular
+                            </span>
+                          )}
                         </span>
-                      )}
+                        <Button
+                          href={tier.monthlyAmount === null ? "/contact" : "/free-trial"}
+                          variant={tier.popular ? "primary" : "outline"}
+                          size="sm"
+                        >
+                          {tier.cta}
+                        </Button>
+                      </div>
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {comparisonRows.map((group) => (
-                  <>
-                    <tr key={group.categoryKey} className="bg-ink-50">
+                  <React.Fragment key={group.categoryKey}>
+                    <tr className="bg-ink-50">
                       <td
                         colSpan={4}
                         className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-ink-400"
@@ -259,7 +310,7 @@ export function PricingTiers() {
                         <Cell value={row.enterprise} highlight={false} />
                       </tr>
                     ))}
-                  </>
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>
