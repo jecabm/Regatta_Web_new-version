@@ -6,10 +6,18 @@ import { HowItWorks } from "@/components/marketing/sections/how-it-works";
 import { IndustriesSection } from "@/components/marketing/sections/industries-section";
 import { TestimonialsSection } from "@/components/marketing/sections/testimonials-section";
 import { CtaBand } from "@/components/marketing/sections/cta-band";
+import { SanityHomeProvider } from "@/content/sanity-home-context";
+import { client } from "@/sanity/lib/client";
+import { homePageQuery } from "@/sanity/queries";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [au, co] = await Promise.all([
+    client.fetch(homePageQuery, { country: "au" }),
+    client.fetch(homePageQuery, { country: "co" }),
+  ]);
+
   return (
-    <>
+    <SanityHomeProvider value={{ au, co }}>
       <MercuryHero />
       <TrustBar />
       <WhySection />
@@ -18,6 +26,6 @@ export default function HomePage() {
       <IndustriesSection />
       <TestimonialsSection />
       <CtaBand />
-    </>
+    </SanityHomeProvider>
   );
 }

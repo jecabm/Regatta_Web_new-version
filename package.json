@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:homepage": "node --env-file=.env.local --experimental-strip-types scripts/seed-homepage.ts",
+    "seed:features": "node --env-file=.env.local --experimental-strip-types scripts/seed-features.ts",
+    "seed:pricing": "node --env-file=.env.local --experimental-strip-types scripts/seed-pricing.ts",
+    "seed:about": "node --env-file=.env.local --experimental-strip-types scripts/seed-about.ts",
+    "seed:contact": "node --env-file=.env.local --experimental-strip-types scripts/seed-contact.ts"
   },
   "dependencies": {
     "@google-analytics/data": "^6.1.0",

@@ -170,6 +170,8 @@ export interface AboutContent {
   eyebrow: string;
   title: string;
   intro: string;
+  /** Extra paragraphs shown below the hero image, separated by "\n\n". */
+  secondaryIntro: string;
   mission: { title: string; body: string };
   stats: StatItem[];
   values: { title: string; items: FeatureItem[] };

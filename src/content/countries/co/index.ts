@@ -287,6 +287,8 @@ export const coContent: CountryContent = {
     title: "Hecho para la realidad del cumplimiento industrial",
     intro:
       "Regatta Registers ayuda a las operaciones con muchos activos a reemplazar el papel y las hojas de cálculo con un único sistema, listo para auditorías, de activos, inspecciones y cumplimiento.",
+    secondaryIntro:
+      "Regatta Registers (R&R) is an Australian SaaS platform built by industry professionals with real-world experience in compliance-driven environments. Our cloud-based system helps businesses manage assets, inspections, maintenance, and reporting in one easy-to-use platform.\n\nDesigned to fit the way your organisation works, RR combines configurable workflows, real-time tracking, automated compliance, and flexible scheduling to simplify operations and eliminate manual processes.",
     mission: {
       title: "Nuestra misión",
       body: "Hacer que el cumplimiento sea sencillo para las industrias que mueven el mundo, para que los equipos dediquen menos tiempo a tareas administrativas y más a un trabajo seguro y productivo.",

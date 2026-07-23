@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
+import { useCallback, useContext, useSyncExternalStore } from "react";
 import {
   COUNTRIES,
   DEFAULT_COUNTRY,
@@ -9,6 +9,14 @@ import {
   type CountryCode,
 } from "@/config/countries";
 import { getCountryContent } from "@/content/countries";
+import { SanityHomeContext } from "@/content/sanity-home-context";
+import { mergeHomeContent } from "@/content/sanity-home";
+import { SanityPricingContext } from "@/content/sanity-pricing-context";
+import { mergePricingContent } from "@/content/sanity-pricing";
+import { SanityAboutContext } from "@/content/sanity-about-context";
+import { mergeAboutContent } from "@/content/sanity-about";
+import { SanityContactContext } from "@/content/sanity-contact-context";
+import { mergeContactContent } from "@/content/sanity-contact";
 
 const STORAGE_KEY = "rr-country";
 
@@ -65,11 +73,22 @@ export function setCountry(code: CountryCode) {
 export function useCountry() {
   const code = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const select = useCallback((next: CountryCode) => setCountry(next), []);
+  const homeOverrides = useContext(SanityHomeContext);
+  const pricingOverrides = useContext(SanityPricingContext);
+  const aboutOverrides = useContext(SanityAboutContext);
+  const contactOverrides = useContext(SanityContactContext);
+
+  let merged = mergePricingContent(
+    mergeHomeContent(getCountryContent(code), homeOverrides[code]),
+    pricingOverrides[code]
+  );
+  merged.about = mergeAboutContent(merged.about, aboutOverrides[code]);
+  merged = mergeContactContent(merged, contactOverrides[code]);
 
   return {
     code,
     meta: getCountryMeta(code),
-    content: getCountryContent(code),
+    content: merged,
     countries: COUNTRIES,
     setCountry: select,
   };

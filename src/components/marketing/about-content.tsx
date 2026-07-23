@@ -50,12 +50,9 @@ export function AboutContent() {
             </div>
           </div>
           <div className="mt-12">
-            <p className="text-lg leading-relaxed text-ink-500">
-              Regatta Registers (R&amp;R) is an Australian SaaS platform built by industry professionals with real-world experience in compliance-driven environments. Our cloud-based system helps businesses manage assets, inspections, maintenance, and reporting in one easy-to-use platform.
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-ink-500">
-              Designed to fit the way your organisation works, RR combines configurable workflows, real-time tracking, automated compliance, and flexible scheduling to simplify operations and eliminate manual processes.
-            </p>
+            {a.secondaryIntro.split("\n\n").map((para, i) => (
+              <p key={i} className="mt-5 text-lg leading-relaxed text-ink-500 first:mt-0">{para}</p>
+            ))}
           </div>
         </Container>
       </Section>

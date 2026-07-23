@@ -1,10 +1,92 @@
-import { BookIcon, DocumentTextIcon, HelpCircleIcon, PlayIcon, StarIcon, TagIcon, UsersIcon } from '@sanity/icons'
+import { BookIcon, DocumentTextIcon, EnvelopeIcon, HelpCircleIcon, HomeIcon, PlayIcon, RocketIcon, StarIcon, TagIcon, UsersIcon } from '@sanity/icons'
 import type { StructureResolver } from 'sanity/structure'
 
 export const structure: StructureResolver = (S) =>
   S.list()
     .title('Regatta Registers')
     .items([
+      S.listItem()
+        .title('Homepage')
+        .icon(HomeIcon)
+        .child(
+          S.list()
+            .title('Homepage')
+            .items([
+              S.listItem()
+                .title('Australia')
+                .child(S.document().schemaType('homePage').documentId('homePage-au')),
+              S.listItem()
+                .title('Colombia')
+                .child(S.document().schemaType('homePage').documentId('homePage-co')),
+            ])
+        ),
+
+      S.listItem()
+        .title('Features Page')
+        .icon(RocketIcon)
+        .child(
+          S.list()
+            .title('Features Page')
+            .items([
+              S.listItem()
+                .title('Australia')
+                .child(S.document().schemaType('featuresPage').documentId('featuresPage-au')),
+              S.listItem()
+                .title('Colombia')
+                .child(S.document().schemaType('featuresPage').documentId('featuresPage-co')),
+            ])
+        ),
+
+      S.listItem()
+        .title('Pricing Page')
+        .icon(TagIcon)
+        .child(
+          S.list()
+            .title('Pricing Page')
+            .items([
+              S.listItem()
+                .title('Australia')
+                .child(S.document().schemaType('pricingPage').documentId('pricingPage-au')),
+              S.listItem()
+                .title('Colombia')
+                .child(S.document().schemaType('pricingPage').documentId('pricingPage-co')),
+            ])
+        ),
+
+      S.listItem()
+        .title('About Page')
+        .icon(UsersIcon)
+        .child(
+          S.list()
+            .title('About Page')
+            .items([
+              S.listItem()
+                .title('Australia')
+                .child(S.document().schemaType('aboutPage').documentId('aboutPage-au')),
+              S.listItem()
+                .title('Colombia')
+                .child(S.document().schemaType('aboutPage').documentId('aboutPage-co')),
+            ])
+        ),
+
+      S.listItem()
+        .title('Contact Page')
+        .icon(EnvelopeIcon)
+        .child(
+          S.list()
+            .title('Contact Page')
+            .items([
+              S.listItem()
+                .title('Australia')
+                .child(S.document().schemaType('contactPage').documentId('contactPage-au')),
+              S.listItem()
+                .title('Colombia')
+                .child(S.document().schemaType('contactPage').documentId('contactPage-co')),
+            ])
+        ),
+
+      S.divider(),
+
       S.listItem()
         .title('Blog / Resources')
         .icon(DocumentTextIcon)
